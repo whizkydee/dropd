@@ -63,8 +63,7 @@ of things to do.
    concurrently re-build or
 1. Use `yarn build` to compile `packages/vue-dropd/index.vue` and
    `packages/react-dropd/index.js` (shows `bundlesize` info too)
-
-To begin, run `yarn install -W`
+ 
 
 ## 🤝 License
 
