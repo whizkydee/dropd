@@ -2,7 +2,7 @@
   <br />
   <br />
   <br />
-  <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqly51jfbmKjSkmGku3o0rtj0Co0Aks5cu3zhwA%3D%3D" width="250" height="auto" alt="dropd logo" />
+  <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqio0F4tIzhx-8XPxtMtiKgagz1Kbks5cu7UawA%3D%3D" width="250" height="auto" alt="dropd logo" />
   <br />
   <br />
   <h3 align="center">:zap: Zero-dependency minimalistic dropdown component for Vue.</h3>

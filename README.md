@@ -2,7 +2,7 @@
   <br />
   <br />
   <br />
-  <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqly51jfbmKjSkmGku3o0rtj0Co0Aks5cu3zhwA%3D%3D" width="250" height="auto" alt="dropd logo" />
+  <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqio0F4tIzhx-8XPxtMtiKgagz1Kbks5cu7UawA%3D%3D" width="250" height="auto" alt="dropd logo" />
   <br />
   <br />
   <h3 align="center">:zap: Zero-dependency minimalistic dropdown component for React and Vue.</h3>
@@ -33,8 +33,11 @@ $ npm install dropd --save
 
 or
 
-See [react-dropd](https://github.com/whizkydee/dropd/tree/master/packages/react-dropd) and [vue-dropd](https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd) for framework specific installation.
-
+See
+[react-dropd](https://github.com/whizkydee/dropd/tree/master/packages/react-dropd)
+and
+[vue-dropd](https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd)
+for framework specific installation.
 
 ## 📖 Usage
 
@@ -43,9 +46,10 @@ See [react-dropd](https://github.com/whizkydee/dropd/tree/master/packages/react-
 
 ## 👀 Examples
 
-⚡️ [React Dropd on CodeSandbox](https://github.com/whizkydee/dropd/tree/master/packages/react-dropd#usage)
-⚡️ [Vue Dropd on CodeSandbox](https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd#usage)
-
+⚡️
+[React Dropd on CodeSandbox](https://github.com/whizkydee/dropd/tree/master/packages/react-dropd#usage)
+⚡️
+[Vue Dropd on CodeSandbox](https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd#usage)
 
 ## 🤝 License
 
