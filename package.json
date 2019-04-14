@@ -1,0 +1,48 @@
+{
+  "name": "dropd",
+  "version": "0.1.0",
+  "description": "⚡️Zero-dependency minimalistic dropdown component for React and Vue.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "files": [
+    "packages"
+  ],
+  "scripts": {
+    "fresh": "rm -rf node_modules && yarn install -W",
+    "build": "rm -rf packages/*-dropd/dist && concurrently --kill-others \"npm run build:*\" && bundlesize",
+    "build:vue": "rollup -c packages/vue-dropd/rollup.config.js",
+    "build:react": "rollup -c packages/react-dropd/rollup.config.js",
+    "dev": "concurrently --kill-others \"npm run dev:*\"",
+    "dev:vue": "rollup -c packages/vue-dropd/rollup.config.js -w",
+    "dev:react": "rollup -c packages/react-dropd/rollup.config.js -w",
+    "test": "echo \"Yeah, we definitely need some tests :)\""
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/plugin-transform-classes": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "bundlesize": "^0.17.1",
+    "concurrently": "^4.1.0",
+    "eslint": "^5.16.0",
+    "lerna": "^3.13.1",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.6",
+    "rollup": "^1.9.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-eslint": "^5.1.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-terser": "^4.0.4"
+  },
+  "bundlesize": [
+    {
+      "path": "packages/*-dropd/dist/*.js"
+    }
+  ]
+}

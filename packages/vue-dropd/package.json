@@ -1,0 +1,30 @@
+{
+  "license": "MIT",
+  "name": "vue-dropd",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "version": "0.1.0",
+  "description": "⚡️Zero-dependency minimalistic dropdown for Vue.",
+  "repository": "https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd",
+  "author": {
+    "name": "Olaolu Olawuyi",
+    "email": "mrolaolu@gmail.com",
+    "url": "https://twitter.com/mrolaolu"
+  },
+  "peerDependencies": {
+    "vue": "2.x"
+  },
+  "devDependencies": {
+    "eslint-plugin-vue": "^5.2.2",
+    "rollup-plugin-vue": "^4.7.2",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "keywords": [
+    "vue",
+    "vue-component",
+    "select",
+    "vue-select",
+    "dropdown",
+    "ui"
+  ]
+}

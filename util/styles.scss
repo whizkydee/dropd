@@ -1,0 +1,124 @@
+.dropd {
+  color: #7a8ca0;
+  user-select: none;
+  text-align: left;
+  position: relative;
+  display: inline-flex;
+
+  &[data-open='true'] .dropd-caret {
+    transform: rotate(-180deg);
+  }
+
+  * {
+    outline-width: 1px;
+    box-sizing: border-box;
+    outline-color: #3599e7;
+  }
+}
+
+.dropd-toggle {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  overflow: hidden;
+  font-weight: 300;
+  align-items: center;
+  outline-color: #fff;
+  white-space: no-wrap;
+  -webkit-appearance: none;
+  background-color: transparent;
+  justify-content: space-between;
+  -webkit-tap-highlight-color: transparent;
+
+  .dropd-caret {
+    width: 6px;
+    height: 100%;
+    display: block;
+    transition: 300ms;
+    margin-left: 20px;
+
+    svg {
+      width: inherit;
+      height: inherit;
+
+      use,
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+}
+
+.dropd-current {
+  color: #2c3c4f;
+  display: block;
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  white-space: nowrap;
+}
+
+.dropd-list {
+  left: 0;
+  top: 40px;
+  opacity: 0;
+  z-index: -9;
+  width: 100%;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  text-align: left;
+  box-shadow: none;
+  font-size: 0.9em;
+  max-height: 300px;
+  position: absolute;
+  border-radius: 4px;
+  pointer-events: none;
+  transform-origin: top;
+  overflow: hidden auto;
+  border: 1px solid #e8ecf3;
+  background-color: #ffffff;
+  transform: scaleY(0.8) translateY(-10px);
+  transition: 250ms 100ms, box-shadow 200ms 100ms;
+
+  &.open {
+    opacity: 1;
+    z-index: 1000;
+    pointer-events: auto;
+    transform: scaleY(1) translateY(0px);
+    box-shadow: 0 4px 10px rgba(32, 49, 70, 0.08);
+  }
+
+  .dropd-item {
+    margin: 0;
+    width: 100%;
+    display: block;
+    color: #7a8ca0;
+    list-style: none;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+    font-weight: normal;
+    white-space: nowrap;
+    transition: background 300ms, color 100ms;
+
+    &:hover {
+      color: #2c3c4f;
+      background: #f9fafc;
+    }
+
+    a {
+      display: block;
+      color: inherit;
+      cursor: pointer;
+      color: inherit;
+      line-height: 1.6;
+      padding: 10px 20px;
+      white-space: initial;
+    }
+  }
+}
