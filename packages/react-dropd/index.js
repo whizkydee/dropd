@@ -232,6 +232,7 @@ class Dropd extends React.PureComponent {
               <li
                 key={key}
                 tabIndex="-1"
+                data-testid="dropd-items"
                 className="dropd-item"
                 onMouseDown={event => this.handleItemChange(item, event)}
               >
