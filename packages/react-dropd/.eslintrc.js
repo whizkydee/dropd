@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { es6: true, amd: true, node: true, browser: true },
+  env: { es6: true, amd: true, node: true, browser: true, 'jest': true },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
