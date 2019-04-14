@@ -1,6 +1,6 @@
 {
   "name": "dropd-component",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "⚡️Zero-dependency minimalistic dropdown component for React and Vue.",
   "workspaces": [
     "packages/*"

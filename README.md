@@ -8,9 +8,9 @@
   <h3 align="center">⚡️Zero-dependency minimalistic dropdown component for React and Vue.</h3>
 
   <p align="center">
-  <a href="https://www.npmjs.org/package/dropd-component"><img src="https://img.shields.io/npm/v/dropd.svg?style=flat-square" alt="npm"></a>
-  <a href="https://travis-ci.org/whizkydee/dropd"><img src="https://img.shields.io/travis/whizkydee/dropd.svg?style=flat-square" alt="travis"></a>
-  <a href="https://github.com/whizkydee/dropd"><img src="https://img.shields.io/npm/dm/dropd.svg?style=flat-square" alt="downloads/month"></a>
+  <a href="https://npm.im/dropd-component"><img src="https://img.shields.io/npm/v/dropd-component.svg?color=brightgreen&style=flat-square" alt="Package version."></a>
+  <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PR(s)-welcome-brightgreen.svg?style=flat-square" alt="Make a pull request."></a>
+  <a href="http://www.firsttimersonly.com"><img src="https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square" alt="First-timers Friendly"></a>
   </p>
 </p>
 
