@@ -17,6 +17,8 @@
 ## ✨ Pros:
 
 - 📦 ~3kb (gzipped)
+- 🙅‍♂️ Zero dependencies
+- 📱Supports touch devices
 - ⚒ CommonJS and ES Modules support
 - ✅ Optimized for Accessibilty
 - 🌈 Easy to customize

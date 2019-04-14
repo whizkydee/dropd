@@ -17,6 +17,8 @@
 ## ✨ Pros:
 
 - 📦 ~6kb (gzipped, full package)
+- 🙅‍♂️ Zero dependencies
+- 📱Supports touch devices
 - ⚒ CommonJS and ES Modules support
 - ✅ Optimized for Accessibilty
 - 🌈 Easy to customize
@@ -63,7 +65,7 @@ of things to do.
    concurrently re-build or
 1. Use `yarn build` to compile `packages/vue-dropd/index.vue` and
    `packages/react-dropd/index.js` (shows `bundlesize` info too)
- 
+
 
 ## 🤝 License
 

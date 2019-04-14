@@ -52,12 +52,11 @@ class Dropd extends React.PureComponent {
     document.removeEventListener('mousedown', this.closeOnBlurFn, false)
   }
 
-  _isDropdElem = ctx => {
-    return ctx.indexOf(this.dropdRef.current) !== -1
-  }
+  _isDropdElem = ctx => ctx && ctx.indexOf(this.dropdRef.current) !== -1
 
   _emit = (eventName, detail, callback) => {
     const event = new CustomEvent(eventName, { detail })
+
     this.dropdRef.current.dispatchEvent(event)
     if (typeof callback === 'function') callback.call(this, detail)
   }
@@ -78,6 +77,9 @@ class Dropd extends React.PureComponent {
   }
 
   closeOnBlurFn = event => {
+    event.preventDefault()
+    event.nativeEvent && event.nativeEvent.stopImmediatePropagation()
+
     if (this.props && this.props.closeOnBlur) {
       this._resetListScroll()
       this.setState({ defaultOpen: false })
@@ -106,6 +108,9 @@ class Dropd extends React.PureComponent {
   }
 
   handleItemChange = (item, event) => {
+    event.preventDefault()
+    event.nativeEvent && event.nativeEvent.stopImmediatePropagation()
+
     this.closeDropd()
     this.setState({ currentItem: item }, () => {
       if (
@@ -121,6 +126,8 @@ class Dropd extends React.PureComponent {
 
   toggleDropd = event => {
     event.persist()
+    event.preventDefault()
+    event.nativeEvent && event.nativeEvent.stopImmediatePropagation()
 
     this._resetListScroll()
     this.setState(

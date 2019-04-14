@@ -4,7 +4,7 @@
       type="button"
       tabindex="-1"
       class="dropd-toggle"
-      @mousedown="event => toggleDropd(event)"
+      @mousedown.prevent.stop="event => toggleDropd(event)"
     >
       <input
         type="search"
@@ -73,7 +73,7 @@
         tabindex="-1"
         class="dropd-item"
         v-for="(item, key) in internalList"
-        v-on="{ mousedown: event => handleItemChange(item, event) }"
+        @mousedown.prevent.stop="event => handleItemChange(item, event)"
       >
         <a tabindex="-1" class="dropd-link">{{ item.label || item }}</a>
       </li>
@@ -132,7 +132,7 @@ const Dropd = {
 
   methods: {
     _isDropdElem(ctx) {
-      return ctx.indexOf(this.$refs.dropd) !== -1
+      return ctx && ctx.indexOf(this.$refs.dropd) !== -1
     },
 
     _emitOpen(event) {
@@ -146,6 +146,9 @@ const Dropd = {
     },
 
     closeOnBlurFn(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
       if (this.closeOnBlur) {
         this._resetListScroll()
         this.internalDefaultOpen = false

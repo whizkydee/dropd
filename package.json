@@ -1,6 +1,7 @@
 {
   "name": "dropd-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "license": "MIT",
   "description": "⚡️Zero-dependency minimalistic dropdown component for React and Vue.",
   "workspaces": [
     "packages/*"
@@ -44,5 +45,16 @@
     {
       "path": "packages/*-dropd/dist/*.js"
     }
+  ],
+  "keywords": [
+    "vue",
+    "react",
+    "vue-component",
+    "react-component",
+    "select",
+    "vue-select",
+    "react-select",
+    "dropdown",
+    "ui"
   ]
 }
