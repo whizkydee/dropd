@@ -1,18 +1,18 @@
-<div align="center">
+<p align="center">
   <br />
   <br />
   <br />
-  <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqio0F4tIzhx-8XPxtMtiKgagz1Kbks5cu7UawA%3D%3D" width="250" height="auto" alt="dropd logo" />
+  <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqio0F4tIzhx-8XPxtMtiKgagz1Kbks5cu7UawA%3D%3D" width="250" height="auto" alt="dropd logo" align="center" />
   <br />
   <br />
-  <h3 align="center">:zap: Zero-dependency minimalistic dropdown component for Vue.</h3>
+  <h3 align="center">️️️⚡️Zero-dependency minimalistic dropdown component for Vue.</h3>
 
   <p align="center">
   <a href="https://www.npmjs.org/package/vue-dropd"><img src="https://img.shields.io/npm/v/dropd.svg?style=flat-square" alt="npm"></a>
   <a href="https://travis-ci.org/whizkydee/dropd"><img src="https://img.shields.io/travis/whizkydee/dropd.svg?style=flat-square" alt="travis"></a>
   <a href="https://github.com/whizkydee/dropd"><img src="https://img.shields.io/npm/dm/dropd.svg?style=flat-square" alt="downloads/month"></a>
   </p>
-</div>
+</p>
 
 ## ✨ Pros:
 
@@ -124,7 +124,7 @@ This event is only emitted when an item in the dropdown list is clicked.
 
 ## 👀 Examples
 
-⚡️[Vue Dropd on CodeSandbox](https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd)
+⚡️[Vue Dropd on CodeSandbox](https://codesandbox.io/s/kx874lpmxo?fontsize=14)
 
 ## 🔗 See Also
 
