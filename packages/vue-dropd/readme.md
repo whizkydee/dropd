@@ -126,6 +126,20 @@ This event is only emitted when an item in the dropdown list is clicked.
 
 ⚡️[Vue Dropd on CodeSandbox](https://codesandbox.io/s/kx874lpmxo?fontsize=14)
 
+## 👷 Contributing
+
+Please see [Projects](https://github.com/whizkydee/dropd/projects/1) for a list
+of things to do.
+
+1. Fork this repo and clone on your machine
+1. Navigate to the main folder, `dropd`
+1. Create a new branch using the format, `feature/feature-name`
+1. Run `yarn install -W` to install all of the dependencies in the workspace
+1. Use `yarn dev:vue` to monitor the changes you make in `/packages/vue-dropd`
+   and concurrently re-build or
+1. Use `yarn build:vue` to compile `packages/vue-dropd/index.vue` (shows
+   `bundlesize` info too)
+
 ## 🔗 See Also
 
 [react-dropd](https://github.com/whizkydee/dropd/tree/master/packages/react-dropd)

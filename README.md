@@ -16,7 +16,7 @@
 
 ## ✨ Pros:
 
-- 📦 ~6kb (gzipped, react and vue versions)
+- 📦 ~6kb (gzipped, full package)
 - ⚒ CommonJS and ES Modules support
 - ✅ Optimized for Accessibilty
 - 🌈 Easy to customize
@@ -48,8 +48,23 @@ for framework specific installation.
 
 ⚡️
 [React Dropd on CodeSandbox](https://codesandbox.io/s/0y3x7jwv0n?fontsize=14)
-⚡️
-[Vue Dropd on CodeSandbox](https://codesandbox.io/s/kx874lpmxo?fontsize=14)
+⚡️ [Vue Dropd on CodeSandbox](https://codesandbox.io/s/kx874lpmxo?fontsize=14)
+
+## 👷 Contributing
+
+Please see [Projects](https://github.com/whizkydee/dropd/projects/1) for a list
+of things to do.
+
+1. Fork this repo and clone on your machine
+1. Navigate to the main folder, `dropd`
+1. Create a new branch using the format, `feature/feature-name`
+1. Run `yarn install -W` to install all of the dependencies in the workspace
+1. Use `yarn dev` to monitor the changes you make in `/packages` and
+   concurrently re-build or
+1. Use `yarn build` to compile `packages/vue-dropd/index.vue` and
+   `packages/react-dropd/index.js` (shows `bundlesize` info too)
+
+To begin, run `yarn install -W`
 
 ## 🤝 License
 
