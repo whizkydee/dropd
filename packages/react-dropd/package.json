@@ -3,7 +3,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "name": "react-dropd",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "⚡️Zero-dependency minimalistic dropdown for React.",
   "repository": "https://github.com/whizkydee/dropd/tree/master/packages/react-dropd",
   "author": {
