@@ -8,7 +8,7 @@
   <h3 align="center">:zap: Zero-dependency minimalistic dropdown component for Vue.</h3>
 
   <p align="center">
-  <a href="https://www.npmjs.org/package/dropd"><img src="https://img.shields.io/npm/v/dropd.svg?style=flat-square" alt="npm"></a>
+  <a href="https://www.npmjs.org/package/vue-dropd"><img src="https://img.shields.io/npm/v/dropd.svg?style=flat-square" alt="npm"></a>
   <a href="https://travis-ci.org/whizkydee/dropd"><img src="https://img.shields.io/travis/whizkydee/dropd.svg?style=flat-square" alt="travis"></a>
   <a href="https://github.com/whizkydee/dropd"><img src="https://img.shields.io/npm/dm/dropd.svg?style=flat-square" alt="downloads/month"></a>
   </p>
