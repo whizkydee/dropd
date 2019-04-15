@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "fresh": "rm -rf node_modules && yarn install -W",
-    "build": "rm -rf packages/*-dropd/dist && concurrently --kill-others \"npm run build:*\" && bundlesize",
+    "build": "rm -rf packages/*-dropd/dist && npm-run-all build:* && bundlesize",
     "build:vue": "rollup -c packages/vue-dropd/rollup.config.js",
     "build:react": "rollup -c packages/react-dropd/rollup.config.js",
     "dev": "concurrently --kill-others \"npm run dev:*\"",
@@ -33,6 +33,7 @@
     "eslint": "^5.16.0",
     "lerna": "^3.13.1",
     "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
     "react": "^16.8.6",
     "rollup": "^1.9.0",
     "rollup-plugin-babel": "^4.3.2",
