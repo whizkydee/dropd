@@ -192,7 +192,7 @@ class Dropd extends React.PureComponent {
           )}
 
           {currentItem && (
-            <span className="dropd-current">
+            <span data-testid="dropd-current-value" className="dropd-current">
               {currentItem.label || currentItem}
             </span>
           )}
