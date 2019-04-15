@@ -1,7 +1,7 @@
 import React from 'react'
 import '../util/styles.scss'
 import PropTypes from 'prop-types'
-import { getPath, isDropdElem } from '../util'
+import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../util'
 
 class Dropd extends React.PureComponent {
   dropdRef = React.createRef()
@@ -72,7 +72,7 @@ class Dropd extends React.PureComponent {
     setTimeout(() => {
       if (this.listRef && this.listRef.current)
         this.listRef.current.scrollTop = 0
-    }, 250)
+    }, listTimeout)
   }
 
   closeOnBlurFn = event => {
@@ -165,19 +165,9 @@ class Dropd extends React.PureComponent {
             type="search"
             autoComplete="off"
             readOnly="readonly"
-            onBlur={this.closeDropd}
-            style={{
+            style={focusBoxStyles}
+            className="dropd-focusbox"
             onBlur={this.handleBlurOnTabNavigation}
-              height: 0,
-              margin: 0,
-              padding: 0,
-              border: '0 none',
-              outline: '0 none',
-              textAlign: 'unset',
-              position: 'absolute',
-              WebkitAppearance: 'none',
-            }}
-            className="dropd-fake-search"
             onFocus={event => this.handleFocus(event)}
           />
 

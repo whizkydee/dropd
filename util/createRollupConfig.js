@@ -1,10 +1,11 @@
 const path = require('path')
 const babel = require('rollup-plugin-babel')
 const postcss = require('rollup-plugin-postcss')
-const { terser } = require('rollup-plugin-terser')
-const { eslint } = require('rollup-plugin-eslint')
 const commonjs = require('rollup-plugin-commonjs')
+const terser = require('rollup-plugin-terser').terser
+const eslint = require('rollup-plugin-eslint').eslint
 const resolve = require('rollup-plugin-node-resolve')
+const sassVariablesToObject = require('rollup-plugin-sass-variables')
 
 const formats = ['es', 'cjs']
 
@@ -13,6 +14,7 @@ const createRollupConfig = opts => ({
   external: [...(opts.external || [])],
   plugins: [
     postcss({ plugins: [] }),
+    sassVariablesToObject(),
     babel({
       sourcemap: false,
       exclude: 'node_modules/**',

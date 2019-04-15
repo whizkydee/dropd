@@ -41,6 +41,7 @@
     "rollup-plugin-eslint": "^5.1.0",
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-sass-variables": "^0.1.1",
     "rollup-plugin-terser": "^4.0.4"
   },
   "bundlesize": [

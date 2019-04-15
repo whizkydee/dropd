@@ -1,3 +1,5 @@
+@import './variables';
+
 .dropd {
   color: #7a8ca0;
   user-select: none;
@@ -91,7 +93,7 @@
   border: 1px solid #e8ecf3;
   background-color: #ffffff;
   transform: scaleY(0.8) translateY(-10px);
-  transition: 250ms 100ms, box-shadow 200ms 100ms;
+  transition: #{$list-transition-duration}ms #{$list-transition-delay}ms, box-shadow 200ms 100ms;
 
   &.open {
     opacity: 1;

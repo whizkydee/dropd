@@ -6482,6 +6482,11 @@ rollup-plugin-postcss@^2.0.3:
     rollup-pluginutils "^2.0.1"
     style-inject "^0.3.0"
 
+rollup-plugin-sass-variables@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-sass-variables/-/rollup-plugin-sass-variables-0.1.1.tgz#6eae8a6ca9777356de9758bcfdaf3489570dd1f6"
+  integrity sha512-nTj4onwZwxI1VIkV8eMBZBOpqA9QkskGz4VSt36yHLNXnz758mHGIyaL5lMoWhplk2475TcGLZ+CSL+iMB6D5w==
+
 rollup-plugin-terser@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-4.0.4.tgz#6f661ef284fa7c27963d242601691dc3d23f994e"

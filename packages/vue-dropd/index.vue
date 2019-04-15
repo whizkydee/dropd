@@ -10,19 +10,9 @@
         type="search"
         autocomplete="off"
         readonly="readonly"
-        @blur="closeDropd"
-        :style="{
+        class="dropd-focusbox"
+        :style="focusBoxStyles"
         @blur="handleBlurOnTabNavigation"
-          height: 0,
-          margin: 0,
-          padding: 0,
-          border: '0 none',
-          outline: '0 none',
-          textAlign: 'unset',
-          position: 'absolute',
-          WebkitAppearance: 'none',
-        }"
-        class="dropd-fake-search"
         @focus="event => handleFocus(event)"
       />
       <span
@@ -83,7 +73,7 @@
 
 <script>
 import '../util/styles.scss'
-import { getPath, isDropdElem } from '../util'
+import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../util'
 
 const Dropd = {
   data: () => ({
@@ -141,7 +131,7 @@ const Dropd = {
     _resetListScroll() {
       setTimeout(() => {
         if (this.$refs.list) this.$refs.list.scrollTop = 0
-      }, 250)
+      }, listTimeout)
     },
 
     closeOnBlurFn(event) {
