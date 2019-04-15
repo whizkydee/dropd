@@ -1,5 +1,9 @@
 # Dropd
 
+## v1.0.5 / 2019-04-15
+
+- Fixes bug where `focus` is not taken from other elements to `dropd-toggle`
+
 ## v1.0.4 / 2019-04-15
 
 - Fixes inconsistencies with `TouchEvent` and `closeOnBlurFn`

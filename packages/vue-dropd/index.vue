@@ -4,7 +4,7 @@
       type="button"
       tabindex="-1"
       class="dropd-toggle"
-      @mousedown.prevent.stop="event => toggleDropd(event)"
+      @mousedown.stop="event => toggleDropd(event)"
     >
       <input
         type="search"
@@ -132,7 +132,7 @@ const Dropd = {
     _isDropdElemOfInstance(ctx) {
       return (
         ctx &&
-        (ctx.indexOf(this.$refs.dropd) !== -1 && ctx !== this.dropdRef.current)
+        (ctx.indexOf(this.$refs.dropd) !== -1 && ctx !== this.$refs.dropd)
       )
     },
 

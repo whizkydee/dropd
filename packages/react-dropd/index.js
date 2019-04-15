@@ -125,7 +125,6 @@ class Dropd extends React.PureComponent {
 
   toggleDropd = event => {
     event.persist()
-    event.preventDefault()
     event.stopPropagation()
 
     this._resetListScroll()
