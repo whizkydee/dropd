@@ -1,5 +1,23 @@
 import constants from 'variables!./variables.scss'
 
+const CLASSNAMES = {
+  container: 'dropd',
+  list: 'dropd-list',
+  item: 'dropd-item',
+  link: 'dropd-link',
+  caret: 'dropd-caret',
+  button: 'dropd-toggle',
+  focusbox: 'dropd-focusbox',
+  currentItem: 'dropd-current',
+  placeholder: 'is-placeholder',
+}
+
+const CLASSES = {}
+
+Object.keys(CLASSNAMES).forEach(className => {
+  CLASSES[className] = '.' + CLASSNAMES[className]
+}) // { container: '.dropd', ... }
+
 const getPath = event =>
   event && event instanceof UIEvent
     ? event.path || (event.composedPath && event.composedPath())
@@ -24,4 +42,11 @@ const listTimeout =
   parseInt(constants.listTransitionDelay) +
   parseInt(constants.listTransitionDuration)
 
-export { getPath, isDropdElem, focusBoxStyles, listTimeout }
+export {
+  getPath,
+  CLASSES,
+  CLASSNAMES,
+  isDropdElem,
+  listTimeout,
+  focusBoxStyles,
+}

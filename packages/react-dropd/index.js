@@ -1,7 +1,13 @@
+import {
+  getPath,
+  CLASSNAMES,
+  isDropdElem,
+  listTimeout,
+  focusBoxStyles,
+} from '../helpers'
 import React from 'react'
 import '../helpers/styles.scss'
 import PropTypes from 'prop-types'
-import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../helpers'
 
 class Dropd extends React.PureComponent {
   dropdRef = React.createRef()
@@ -153,14 +159,12 @@ class Dropd extends React.PureComponent {
         dir="auto"
         data-open={open}
         ref={this.dropdRef}
-        data-testid="dropd-container"
-        className="dropd react-dropd"
+        className={CLASSNAMES.container + ' react-dropd'}
       >
         <button
           type="button"
           tabIndex="-1"
-          className="dropd-toggle"
-          data-testid="dropd-toggle"
+          className={CLASSNAMES.button}
           onMouseDown={event => this.toggleDropd(event)}
         >
           <input
@@ -168,27 +172,26 @@ class Dropd extends React.PureComponent {
             autoComplete="off"
             readOnly="readonly"
             style={focusBoxStyles}
-            className="dropd-focusbox"
+            className={CLASSNAMES.focusbox}
             onBlur={this.handleBlurOnTabNavigation}
             onFocus={event => this.handleFocus(event)}
           />
 
           {!currentItem && placeholder && (
             <span
-              data-testid="dropd-placeholder"
-              className="dropd-current is-placeholder"
+              className={CLASSNAMES.currentItem + ' ' + CLASSNAMES.placeholder}
             >
               {placeholder.label || placeholder}
             </span>
           )}
 
           {currentItem && (
-            <span data-testid="dropd-current-value" className="dropd-current">
+            <span className={CLASSNAMES.currentItem}>
               {currentItem.label || currentItem}
             </span>
           )}
 
-          <span className="dropd-caret" aria-hidden={true}>
+          <span className={CLASSNAMES.caret} aria-hidden={true}>
             <svg
               width="6"
               height="4"
@@ -218,18 +221,17 @@ class Dropd extends React.PureComponent {
         <ul
           ref={this.listRef}
           aria-hidden={String(!open)}
-          className={'dropd-list' + (open ? ' open' : '')}
+          className={CLASSNAMES.list + (open ? ' open' : '')}
         >
           {list &&
             list.map((item, key) => (
               <li
                 key={key}
                 tabIndex="-1"
-                className="dropd-item"
-                data-testid="dropd-item"
+                className={CLASSNAMES.item}
                 onMouseDown={event => this.handleItemChange(item, event)}
               >
-                <a tabIndex="-1" className="dropd-link">
+                <a tabIndex="-1" className={CLASSNAMES.link}>
                   {item.label || item}
                 </a>
               </li>

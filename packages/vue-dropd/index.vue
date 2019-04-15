@@ -1,32 +1,37 @@
 <template>
-  <div dir="auto" ref="dropd" class="dropd v-dropd" :data-open="open">
+  <div
+    dir="auto"
+    ref="dropd"
+    :data-open="open"
+    :class="CLASSNAMES.container + ' v-dropd'"
+  >
     <button
       type="button"
       tabindex="-1"
-      class="dropd-toggle"
+      :class="CLASSNAMES.button"
       @mousedown.stop="event => toggleDropd(event)"
     >
       <input
         type="search"
         autocomplete="off"
         readonly="readonly"
-        class="dropd-focusbox"
         :style="focusBoxStyles"
+        :class="CLASSNAMES.focusbox"
         @blur="handleBlurOnTabNavigation"
         @focus="event => handleFocus(event)"
       />
       <span
-        class="dropd-current is-placeholder"
         v-if="!currentItem && placeholder"
+        :class="CLASSNAMES.currentItem + ' ' + CLASSNAMES.placeholder"
       >
         {{ placeholder.label || placeholder }}
       </span>
 
-      <span class="dropd-current" v-if="currentItem">
+      <span :class="CLASSNAMES.currentItem" v-if="currentItem">
         {{ currentItem.label || currentItem }}
       </span>
 
-      <span class="dropd-caret" aria-hidden="true">
+      <span :class="CLASSNAMES.caret" aria-hidden="true">
         <svg
           width="6"
           height="4"
@@ -56,24 +61,30 @@
       ref="list"
       v-if="list && internalList"
       :aria-hidden="String(!open)"
-      :class="'dropd-list' + (open ? ' open' : '')"
+      :class="CLASSNAMES.list + (open ? ' open' : '')"
     >
       <li
         :key="key"
         tabindex="-1"
-        class="dropd-item"
+        :class="CLASSNAMES.item"
         v-for="(item, key) in internalList"
         @mousedown.prevent.stop="event => handleItemChange(item, event)"
       >
-        <a tabindex="-1" class="dropd-link">{{ item.label || item }}</a>
+        <a tabindex="-1" :class="CLASSNAMES.link">{{ item.label || item }}</a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import {
+  getPath,
+  CLASSNAMES,
+  isDropdElem,
+  listTimeout,
+  focusBoxStyles,
+} from '../helpers'
 import '../helpers/styles.scss'
-import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../helpers'
 
 const Dropd = {
   data: () => ({
