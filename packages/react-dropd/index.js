@@ -77,9 +77,6 @@ class Dropd extends React.PureComponent {
   }
 
   closeOnBlurFn = event => {
-    event.preventDefault()
-    event.nativeEvent && event.nativeEvent.stopImmediatePropagation()
-
     if (this.props && this.props.closeOnBlur) {
       this._resetListScroll()
       this.setState({ defaultOpen: false })

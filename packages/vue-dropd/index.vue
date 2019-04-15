@@ -146,9 +146,6 @@ const Dropd = {
     },
 
     closeOnBlurFn(event) {
-      event.preventDefault()
-      event.stopPropagation()
-
       if (this.closeOnBlur) {
         this._resetListScroll()
         this.internalDefaultOpen = false
