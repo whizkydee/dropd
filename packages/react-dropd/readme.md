@@ -17,6 +17,8 @@
 ## ✨ Pros:
 
 - 📦 ~3kb (gzipped)
+- 🙅‍♂️ Zero dependencies
+- 📱Supports touch devices
 - ⚒ CommonJS and ES Modules support
 - ✅ Optimized for Accessibilty
 - 🌈 Easy to customize
@@ -125,14 +127,17 @@ This event is only emitted when an item in the dropdown list is clicked.
 
 ## 👷 Contributing
 
-Please see [Projects](https://github.com/whizkydee/dropd/projects/1) for a list of things to do.
+Please see [Projects](https://github.com/whizkydee/dropd/projects/1) for a list
+of things to do.
 
 1. Fork this repo and clone on your machine
 1. Navigate to the main folder, `dropd`
 1. Create a new branch using the format, `feature/feature-name`
 1. Run `yarn install -W` to install all of the dependencies in the workspace
-1. Use `yarn dev:react` to monitor the changes you make in `/packages/react-dropd` and concurrently re-build or
-1. Use `yarn build:react` to compile `packages/react-dropd/index.js` (shows `bundlesize` info too)
+1. Use `yarn dev:react` to monitor the changes you make in
+   `/packages/react-dropd` and concurrently re-build or
+1. Use `yarn build:react` to compile `packages/react-dropd/index.js` (shows
+   `bundlesize` info too)
 
 ## 🔗 See Also
 

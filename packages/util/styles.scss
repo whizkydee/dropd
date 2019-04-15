@@ -40,21 +40,20 @@
     width: 6px;
     height: 100%;
     display: flex;
+    outline: 0 none;
     margin-left: 20px;
     transform: rotate(0);
     transition: 300ms linear;
 
-    &:focus {
-      outline: 0 none;
-    }
-
     svg {
       width: inherit;
       height: inherit;
+      outline: inherit;
       overflow: hidden;
 
       use,
       path {
+        outline: inherit;
         fill: currentColor;
       }
     }

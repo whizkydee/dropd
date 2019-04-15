@@ -1,6 +1,7 @@
 import React from 'react'
-import '../../util/styles.scss'
+import '../util/styles.scss'
 import PropTypes from 'prop-types'
+import { getPath, isDropdElem } from '../util'
 
 class Dropd extends React.PureComponent {
   dropdRef = React.createRef()
@@ -31,9 +32,7 @@ class Dropd extends React.PureComponent {
       this.setState({ open: true })
     }
 
-    if (this.props.revealOn === 'mousedown') {
-      document.addEventListener('mousedown', this.closeOnBlurFn, false)
-    }
+    document.addEventListener('mousedown', this.closeOnBlurFn, true)
   }
 
   UNSAFE_componentWillUpdate(nextProps) {
@@ -49,15 +48,14 @@ class Dropd extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.closeOnBlurFn, false)
+    document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   }
 
-  _isDropdElem = ctx => {
-    return ctx.indexOf(this.dropdRef.current) !== -1
-  }
+  _isDropdElem = ctx => isDropdElem(ctx, this.dropdRef.current)
 
   _emit = (eventName, detail, callback) => {
     const event = new CustomEvent(eventName, { detail })
+
     this.dropdRef.current.dispatchEvent(event)
     if (typeof callback === 'function') callback.call(this, detail)
   }
@@ -78,16 +76,11 @@ class Dropd extends React.PureComponent {
   }
 
   closeOnBlurFn = event => {
-    if (this.props && this.props.closeOnBlur) {
+    if (this.props.closeOnBlur && !this._isDropdElem(getPath(event))) {
       this._resetListScroll()
       this.setState({ defaultOpen: false })
-      if (this.state.revealOn === 'mousedown') {
-        if (this.state.open) {
-          if (this._isDropdElem(event.path)) return
 
-          this.closeDropd()
-        }
-      }
+      if (this.state.open) this.closeDropd()
     }
   }
 
@@ -105,6 +98,9 @@ class Dropd extends React.PureComponent {
   }
 
   handleItemChange = (item, event) => {
+    event.preventDefault()
+    event.nativeEvent && event.nativeEvent.stopImmediatePropagation()
+
     this.closeDropd()
     this.setState({ currentItem: item }, () => {
       if (
@@ -120,6 +116,7 @@ class Dropd extends React.PureComponent {
 
   toggleDropd = event => {
     event.persist()
+    event.stopPropagation()
 
     this._resetListScroll()
     this.setState(

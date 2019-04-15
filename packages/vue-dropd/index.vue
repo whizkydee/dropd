@@ -4,7 +4,7 @@
       type="button"
       tabindex="-1"
       class="dropd-toggle"
-      @mousedown="event => toggleDropd(event)"
+      @mousedown.stop="event => toggleDropd(event)"
     >
       <input
         type="search"
@@ -73,7 +73,7 @@
         tabindex="-1"
         class="dropd-item"
         v-for="(item, key) in internalList"
-        v-on="{ mousedown: event => handleItemChange(item, event) }"
+        @mousedown.prevent.stop="event => handleItemChange(item, event)"
       >
         <a tabindex="-1" class="dropd-link">{{ item.label || item }}</a>
       </li>
@@ -82,7 +82,8 @@
 </template>
 
 <script>
-import '../../util/styles.scss'
+import '../util/styles.scss'
+import { getPath, isDropdElem } from '../util'
 
 const Dropd = {
   data: () => ({
@@ -110,13 +111,11 @@ const Dropd = {
   },
 
   mounted() {
-    if (this.internalRevealOn === 'mousedown') {
-      document.addEventListener('mousedown', this.closeOnBlurFn, false)
-    }
+    document.addEventListener('mousedown', this.closeOnBlurFn, true)
   },
 
   destroyed() {
-    document.removeEventListener('mousedown', this.closeOnBlurFn, false)
+    document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   },
 
   watch: {
@@ -132,7 +131,7 @@ const Dropd = {
 
   methods: {
     _isDropdElem(ctx) {
-      return ctx.indexOf(this.$refs.dropd) !== -1
+      return isDropdElem(ctx, this.$refs.dropd)
     },
 
     _emitOpen(event) {
@@ -146,17 +145,11 @@ const Dropd = {
     },
 
     closeOnBlurFn(event) {
-      if (this.closeOnBlur) {
+      if (this.closeOnBlur && !this._isDropdElem(getPath(event))) {
         this._resetListScroll()
         this.internalDefaultOpen = false
 
-        if (this.internalRevealOn === 'mousedown') {
-          if (this.open) {
-            if (this._isDropdElem(event.path)) return
-
-            this.closeDropd()
-          }
-        }
+        if (this.open) this.closeDropd()
       }
     },
 
