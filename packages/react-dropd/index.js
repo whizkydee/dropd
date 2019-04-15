@@ -81,7 +81,6 @@ class Dropd extends React.PureComponent {
     if (this.props && this.props.closeOnBlur) {
       this._resetListScroll()
       this.setState({ defaultOpen: false })
-
       if (this.state.revealOn === 'mousedown') {
         if (this.state.open) {
           if (this._isDropdElem(event.path)) return
@@ -127,6 +126,7 @@ class Dropd extends React.PureComponent {
       ({ open }) => ({ open: !open }),
       () => {
         if (this.state.open) this._emitOpen(event)
+
       }
     )
   }
@@ -154,6 +154,7 @@ class Dropd extends React.PureComponent {
         {...props}
         dir="auto"
         data-open={open}
+        data-testid="dropd-container"
         ref={this.dropdRef}
         className="dropd react-dropd"
       >
@@ -161,6 +162,7 @@ class Dropd extends React.PureComponent {
           type="button"
           tabIndex="-1"
           className="dropd-toggle"
+          data-testid="dropd-button"
           onMouseDown={event => this.toggleDropd(event)}
         >
           <input
@@ -184,7 +186,7 @@ class Dropd extends React.PureComponent {
           />
 
           {!currentItem && placeholder && (
-            <span className="dropd-current is-placeholder">
+            <span data-testid="dropd-placeholder" className="dropd-current is-placeholder">
               {placeholder.label || placeholder}
             </span>
           )}
