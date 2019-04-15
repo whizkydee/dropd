@@ -1,6 +1,7 @@
 import React from 'react'
-import '../../util/styles.scss'
+import '../util/styles.scss'
 import PropTypes from 'prop-types'
+import { getPath, isDropdElem } from '../util'
 
 class Dropd extends React.PureComponent {
   dropdRef = React.createRef()
@@ -50,13 +51,7 @@ class Dropd extends React.PureComponent {
     document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   }
 
-  _isDropdElemOfInstance = ctx => {
-    return (
-      ctx &&
-      (ctx.indexOf(this.dropdRef.current) !== -1 &&
-        ctx !== this.dropdRef.current)
-    )
-  }
+  _isDropdElem = ctx => isDropdElem(ctx, this.dropdRef.current)
 
   _emit = (eventName, detail, callback) => {
     const event = new CustomEvent(eventName, { detail })
@@ -81,15 +76,11 @@ class Dropd extends React.PureComponent {
   }
 
   closeOnBlurFn = event => {
-    if (this.props.closeOnBlur) {
+    if (this.props.closeOnBlur && !this._isDropdElem(getPath(event))) {
       this._resetListScroll()
       this.setState({ defaultOpen: false })
 
-      if (this.state.open) {
-        if (this._isDropdElemOfInstance(event.path)) return
-
-        this.closeDropd()
-      }
+      if (this.state.open) this.closeDropd()
     }
   }
 

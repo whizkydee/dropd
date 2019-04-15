@@ -1,5 +1,10 @@
 # Dropd
 
+## v1.1.0 / 2019-04-15
+
+- Fixes several browser inconsistencies
+- Fixes all issues with `TouchEvent`
+
 ## v1.0.5 / 2019-04-15
 
 - Fixes bug where `focus` is not taken from other elements to `dropd-toggle`

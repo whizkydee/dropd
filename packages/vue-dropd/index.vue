@@ -82,7 +82,8 @@
 </template>
 
 <script>
-import '../../util/styles.scss'
+import '../util/styles.scss'
+import { getPath, isDropdElem } from '../util'
 
 const Dropd = {
   data: () => ({
@@ -129,11 +130,8 @@ const Dropd = {
   },
 
   methods: {
-    _isDropdElemOfInstance(ctx) {
-      return (
-        ctx &&
-        (ctx.indexOf(this.$refs.dropd) !== -1 && ctx !== this.$refs.dropd)
-      )
+    _isDropdElem(ctx) {
+      return isDropdElem(ctx, this.$refs.dropd)
     },
 
     _emitOpen(event) {
@@ -147,15 +145,11 @@ const Dropd = {
     },
 
     closeOnBlurFn(event) {
-      if (this.closeOnBlur) {
+      if (this.closeOnBlur && !this._isDropdElem(getPath(event))) {
         this._resetListScroll()
         this.internalDefaultOpen = false
 
-        if (this.open) {
-          if (this._isDropdElemOfInstance(event.path)) return
-
-          this.closeDropd()
-        }
+        if (this.open) this.closeDropd()
       }
     },
 
