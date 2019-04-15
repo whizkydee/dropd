@@ -92,6 +92,8 @@ class Dropd extends React.PureComponent {
     }
   }
 
+  handleBlurOnTabNavigation = () => this.props.closeOnBlur && this.closeDropd()
+
   closeDropd = () => {
     this._resetListScroll()
     this.setState({ open: false, defaultOpen: false })
@@ -165,7 +167,7 @@ class Dropd extends React.PureComponent {
             readOnly="readonly"
             onBlur={this.closeDropd}
             style={{
-              width: 0,
+            onBlur={this.handleBlurOnTabNavigation}
               height: 0,
               margin: 0,
               padding: 0,

@@ -12,7 +12,7 @@
         readonly="readonly"
         @blur="closeDropd"
         :style="{
-          width: 0,
+        @blur="handleBlurOnTabNavigation"
           height: 0,
           margin: 0,
           padding: 0,
@@ -158,6 +158,10 @@ const Dropd = {
         this.open = true
         this._emitOpen(event)
       }
+    },
+
+    handleBlurOnTabNavigation() {
+      this.closeOnBlur && this.closeDropd()
     },
 
     closeDropd() {
