@@ -72,8 +72,8 @@
 </template>
 
 <script>
-import '../util/styles.scss'
-import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../util'
+import '../helpers/styles.scss'
+import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../helpers'
 
 const Dropd = {
   data: () => ({

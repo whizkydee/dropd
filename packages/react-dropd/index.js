@@ -1,7 +1,7 @@
 import React from 'react'
-import '../util/styles.scss'
+import '../helpers/styles.scss'
 import PropTypes from 'prop-types'
-import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../util'
+import { getPath, isDropdElem, focusBoxStyles, listTimeout } from '../helpers'
 
 class Dropd extends React.PureComponent {
   dropdRef = React.createRef()
