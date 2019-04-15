@@ -110,13 +110,11 @@ const Dropd = {
   },
 
   mounted() {
-    if (this.internalRevealOn === 'mousedown') {
-      document.addEventListener('mousedown', this.closeOnBlurFn, false)
-    }
+    document.addEventListener('mousedown', this.closeOnBlurFn, true)
   },
 
   destroyed() {
-    document.removeEventListener('mousedown', this.closeOnBlurFn, false)
+    document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   },
 
   watch: {
@@ -131,8 +129,11 @@ const Dropd = {
   },
 
   methods: {
-    _isDropdElem(ctx) {
-      return ctx && ctx.indexOf(this.$refs.dropd) !== -1
+    _isDropdElemOfInstance(ctx) {
+      return (
+        ctx &&
+        (ctx.indexOf(this.$refs.dropd) !== -1 && ctx !== this.dropdRef.current)
+      )
     },
 
     _emitOpen(event) {
@@ -150,12 +151,10 @@ const Dropd = {
         this._resetListScroll()
         this.internalDefaultOpen = false
 
-        if (this.internalRevealOn === 'mousedown') {
-          if (this.open) {
-            if (this._isDropdElem(event.path)) return
+        if (this.open) {
+          if (this._isDropdElemOfInstance(event.path)) return
 
-            this.closeDropd()
-          }
+          this.closeDropd()
         }
       }
     },

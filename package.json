@@ -1,5 +1,6 @@
 {
   "name": "dropd-component",
+  "private": true,
   "version": "1.0.2",
   "license": "MIT",
   "description": "⚡️Zero-dependency minimalistic dropdown component for React and Vue.",
