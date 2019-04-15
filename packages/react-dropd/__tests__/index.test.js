@@ -31,6 +31,16 @@ describe('DropD', () => {
       expect(getByTestId('dropd-container').getElementsByClassName('open').length).toEqual(1);
   })
 
+  it('should close the dropdown on focus loss when closeOnblur is set to true', () => {
+    let list = ['test', 'test2']
+    const { getByTestId, baseElement } = render(<DropD placeholder="Choose" list={list} closeOnBlur={true} />)
+      expect(getByTestId('dropd-container').getElementsByClassName('open').length).toEqual(0);
+      fireEvent.mouseDown(getByTestId('dropd-button'));
+      expect(getByTestId('dropd-container').getElementsByClassName('open').length).toEqual(1);
+      fireEvent.mouseDown(baseElement);
+      expect(getByTestId('dropd-container').getElementsByClassName('open').length).toEqual(0);
+  })
+
   it('should set the value props as the current item', () => {
     let list = ['test', 'test2']
     const { getByTestId } = render(<DropD list={list} value={list[0]} />)
