@@ -11,13 +11,13 @@
     "packages"
   ],
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "npm-run-all test:*",
+    "test:react": "jest -c packages/react-dropd/jest.config.js",
     "fresh": "rm -rf node_modules && yarn install -W",
-    "build": "rm -rf packages/*-dropd/dist && npm-run-all build:* && bundlesize",
+    "build": "rm -rf packages/*-dropd/dist && npm-run-all build:* && yarn test && bundlesize",
     "build:vue": "rollup -c packages/vue-dropd/rollup.config.js",
-    "build:react": "rollup -c packages/react-dropd/rollup.config.js && npm test",
-    "dev": "concurrently --kill-others \"npm run dev:*\"",
+    "build:react": "rollup -c packages/react-dropd/rollup.config.js && yarn test:react",
+    "dev": "concurrently --kill-others \"yarn dev:*\"",
     "dev:vue": "rollup -c packages/vue-dropd/rollup.config.js -W",
     "dev:react": "rollup -c packages/react-dropd/rollup.config.js -W"
   },

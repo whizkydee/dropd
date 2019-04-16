@@ -18,23 +18,19 @@ module.exports = {
   testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    '\\\\node_modules\\\\',
-    '<rootDir>/packages/react-dropd/__tests__/mocks/*',
-  ],
+  testPathIgnorePatterns: ['\\\\node_modules\\\\', '<rootDir>/__tests__/mocks/*'],
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   testURL: 'http://localhost',
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  transformIgnorePatterns: ['./node_modules/'],
 
   // Indicates whether each individual test should be reported during the run
   verbose: false,
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/packages/react-dropd/__tests__/mocks/fileMock.js',
-    '^.+\\.(css|scss)$':
-      '<rootDir>/packages/react-dropd/__tests__/mocks/styleMock.js',
+      '<rootDir>/__tests__/mocks/fileMock.js',
+    '^.+\\.(css|scss)$': '<rootDir>/__tests__/mocks/styleMock.js',
   },
 }

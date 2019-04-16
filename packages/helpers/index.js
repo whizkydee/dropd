@@ -1,4 +1,4 @@
-import constants from 'variables!./variables.scss'
+import constants from 'variables!./constants.scss'
 
 const CLASSNAMES = {
   container: 'dropd',
@@ -42,7 +42,10 @@ const listTimeout =
   parseInt(constants.listTransitionDelay) +
   parseInt(constants.listTransitionDuration)
 
+const wait = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms))
+
 export {
+  wait,
   getPath,
   CLASSES,
   CLASSNAMES,
