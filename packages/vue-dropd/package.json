@@ -6,6 +6,9 @@
   "version": "1.1.0",
   "description": "⚡️Zero-dependency minimalistic dropdown for Vue.",
   "repository": "https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd",
+  "files": [
+    "dist"
+  ],
   "author": {
     "name": "Olaolu Olawuyi",
     "email": "mrolaolu@gmail.com",

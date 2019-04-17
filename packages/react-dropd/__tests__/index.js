@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
 import Dropd from '../dist/index.cjs'
+import React, { Fragment } from 'react'
 import { CLASSES, wait } from '../../helpers'
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
@@ -83,6 +83,14 @@ describe('Dropd', () => {
 
     fireEvent.mouseDown(baseElement)
     expect(dropdList.classList.contains('open')).toBeTruthy()
+  })
+
+  test('should call the `onOpen` function when it is passed', () => {
+    const mockFn = jest.fn()
+    const { container } = render(<Dropd list={list} onOpen={mockFn} />)
+
+    fireEvent.mouseDown(container.querySelector(CLASSES.button))
+    expect(mockFn).toHaveBeenCalledTimes(1)
   })
 
   test('should call the `onItemChange` function when it is passed', () => {

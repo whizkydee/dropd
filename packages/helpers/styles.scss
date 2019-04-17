@@ -1,5 +1,7 @@
 @import './constants';
 
+$button-height: 43px;
+
 .dropd {
   color: #7a8ca0;
   user-select: none;
@@ -21,7 +23,6 @@
 
 .dropd-toggle {
   margin: 0;
-  height: 43px;
   width: 100%;
   border: none;
   padding: 10px;
@@ -32,6 +33,7 @@
   align-items: center;
   outline-color: #fff;
   white-space: no-wrap;
+  height: $button-height;
   -webkit-appearance: none;
   background-color: #ffffff;
   border: 1px solid #e8ecf3;
@@ -73,7 +75,6 @@
 
 .dropd-list {
   left: 0;
-  top: 40px;
   opacity: 0;
   z-index: -9;
   width: 100%;
@@ -90,6 +91,7 @@
   pointer-events: none;
   transform-origin: top;
   overflow: hidden auto;
+  top: $button-height + 5;
   border: 1px solid #e8ecf3;
   background-color: #ffffff;
   transform: scaleY(0.8) translateY(-10px);
