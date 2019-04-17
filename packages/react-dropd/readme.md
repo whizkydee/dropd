@@ -25,13 +25,13 @@
 - 🦄 Optimized for performance
 - 💅 More-reliant on CSS over JavaScript
 
-## 🔧 Installation
+## Get Started
 
 ```
 $ npm install react-dropd --save
 ```
 
-## 📖 Usage
+## Usage
 
 Import the component
 
@@ -55,8 +55,7 @@ Now, you can use it:
 
 **Default:** `[]`
 
-**Description:** An array of strings or objects to be used as dropdown items. If
-you are using an array of objects, ensure you have a `label` key. e.g
+**Description:** An array of strings or objects to be used as dropdown items, if you are using an array of objects, ensure you have a `label` key. e.g
 `[{label: 'Caramel', value: 'caramel'}])`.
 
 #### `closeOnBlur: {Boolean}`
@@ -120,18 +119,17 @@ This event is only emitted when:
 
 This event is only emitted when an item in the dropdown list is clicked.
 
-## 👀 Examples
+## Examples
 
-⚡️
-[React Dropd on CodeSandbox](https://codesandbox.io/s/0y3x7jwv0n?fontsize=14)
+[React Dropd](https://codesandbox.io/s/0y3x7jwv0n?fontsize=14) on CodeSandbox
 
-## 👷 Contributing
+## Contributing
 
 Please see [Projects](https://github.com/whizkydee/dropd/projects/1) for a list
 of things to do.
 
 1. Fork this repo and clone on your machine
-1. Navigate to the main folder, `dropd`
+1. Navigate to the main folder, `cd dropd`
 1. Create a new branch using the format, `feature/feature-name`
 1. Run `yarn install -W` to install all of the dependencies in the workspace
 1. Use `yarn dev:react` to monitor the changes you make in
@@ -139,10 +137,10 @@ of things to do.
 1. Use `yarn build:react` to compile `packages/react-dropd/index.js` (shows
    `bundlesize` info too)
 
-## 🔗 See Also
+## See Also
 
 [vue-dropd](https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd)
 
-## 🤝 License
+## License
 
 MIT © [Olaolu Olawuyi](https://twitter.com/mrolaolu)
