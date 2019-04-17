@@ -5,7 +5,7 @@
   <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqio0F4tIzhx-8XPxtMtiKgagz1Kbks5cu7UawA%3D%3D" width="250" height="auto" alt="dropd logo" align="center" />
   <br />
   <br />
-  <h3 align="center">️️️⚡️Zero-dependency minimalistic dropdown component for Vue.</h3>
+  <h3 align="center">️️️Zero-dependency minimalistic dropdown component for Vue.</h3>
 
   <p align="center">
   <a href="https://npm.im/vue-dropd"><img src="https://img.shields.io/npm/v/vue-dropd.svg?color=brightgreen&style=flat-square" alt="Package version."></a>
@@ -25,13 +25,13 @@
 - 🦄 Optimized for performance
 - 💅 More-reliant on CSS over JavaScript
 
-## 🔧 Installation
+## Get Started
 
 ```
 $ npm install vue-dropd --save
 ```
 
-## 📖 Usage
+## Usage
 
 Register the component
 
@@ -57,8 +57,7 @@ Now, you can use it anywhere, so, like:
 
 **Default:** `[]`
 
-**Description:** An array of strings or objects to be used as dropdown items. If
-you are using an array of objects, ensure you have a `label` key. e.g
+**Description:** An array of strings or objects to be used as dropdown items, if you are using an array of objects, ensure you have a `label` key. e.g
 `[{label: 'Caramel', value: 'caramel'}])`.
 
 #### `closeOnBlur: {Boolean}`
@@ -124,17 +123,17 @@ This event is only emitted when:
 
 This event is only emitted when an item in the dropdown list is clicked.
 
-## 👀 Examples
+## Examples
 
-⚡️[Vue Dropd on CodeSandbox](https://codesandbox.io/s/kx874lpmxo?fontsize=14)
+[Vue Dropd](https://codesandbox.io/s/kx874lpmxo?fontsize=14) on CodeSandbox
 
-## 👷 Contributing
+## Contributing
 
 Please see [Projects](https://github.com/whizkydee/dropd/projects/1) for a list
 of things to do.
 
 1. Fork this repo and clone on your machine
-1. Navigate to the main folder, `dropd`
+1. Navigate to the main folder, `cd dropd`
 1. Create a new branch using the format, `feature/feature-name`
 1. Run `yarn install -W` to install all of the dependencies in the workspace
 1. Use `yarn dev:vue` to monitor the changes you make in `/packages/vue-dropd`
@@ -142,10 +141,10 @@ of things to do.
 1. Use `yarn build:vue` to compile `packages/vue-dropd/index.vue` (shows
    `bundlesize` info too)
 
-## 🔗 See Also
+## See Also
 
 [react-dropd](https://github.com/whizkydee/dropd/tree/master/packages/react-dropd)
 
-## 🤝 License
+## License
 
 MIT © [Olaolu Olawuyi](https://twitter.com/mrolaolu)
