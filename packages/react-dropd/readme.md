@@ -5,7 +5,7 @@
   <img src="https://raw.githubusercontent.com/whizkydee/dropd/master/small-logo.png?token=AIObqio0F4tIzhx-8XPxtMtiKgagz1Kbks5cu7UawA%3D%3D" width="250" height="auto" alt="dropd logo" align="center" />
   <br />
   <br />
-  <h3 align="center">⚡️Zero-dependency minimalistic dropdown component for React.</h3>
+  <h3 align="center">Zero-dependency minimalistic dropdown component for React.</h3>
 
   <p align="center">
   <a href="https://npm.im/react-dropd"><img src="https://img.shields.io/npm/v/react-dropd.svg?color=brightgreen&style=flat-square" alt="Package version."></a>
