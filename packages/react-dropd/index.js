@@ -1,29 +1,26 @@
+import {
+  getPath,
+  CLASSNAMES,
+  isDropdElem,
+  listTimeout,
+  focusBoxStyles,
+} from '../helpers'
 import React from 'react'
-import '../util/styles.scss'
+import '../helpers/styles.scss'
 import PropTypes from 'prop-types'
-import { getPath, isDropdElem } from '../util'
 
 class Dropd extends React.PureComponent {
   dropdRef = React.createRef()
   listRef = React.createRef()
 
   state = {
-    list: [],
     open: false,
-    currentItem: null,
-    defaultOpen: false,
-    revealOn: 'mousedown',
-  }
-
-  UNSAFE_componentWillMount() {
-    const { list, value } = this.props
-
-    this.setState(state => ({
-      revealOn: this.props.revealOn,
-      list: [...state.list, ...list],
-      defaultOpen: this.props.defaultOpen,
-      currentItem: value ? value.label || value : null,
-    }))
+    list: this.props.list,
+    revealOn: this.props.revealOn,
+    defaultOpen: this.props.defaultOpen,
+    currentItem: this.props.value
+      ? this.props.value.label || this.props.value
+      : null,
   }
 
   componentDidMount() {
@@ -33,18 +30,6 @@ class Dropd extends React.PureComponent {
     }
 
     document.addEventListener('mousedown', this.closeOnBlurFn, true)
-  }
-
-  UNSAFE_componentWillUpdate(nextProps) {
-    if (nextProps.revealOn !== this.state.revealOn) {
-      this.setState({
-        revealOn: nextProps.revealOn,
-      })
-    } else if (nextProps.defaultOpen !== this.state.defaultOpen) {
-      this.setState({
-        defaultOpen: nextProps.defaultOpen,
-      })
-    }
   }
 
   componentWillUnmount() {
@@ -57,7 +42,7 @@ class Dropd extends React.PureComponent {
     const event = new CustomEvent(eventName, { detail })
 
     this.dropdRef.current.dispatchEvent(event)
-    if (typeof callback === 'function') callback.call(this, detail)
+    typeof callback === 'function' && callback.call(this, detail)
   }
 
   _emitOpen = event => {
@@ -72,7 +57,7 @@ class Dropd extends React.PureComponent {
     setTimeout(() => {
       if (this.listRef && this.listRef.current)
         this.listRef.current.scrollTop = 0
-    }, 250)
+    }, listTimeout)
   }
 
   closeOnBlurFn = event => {
@@ -91,6 +76,8 @@ class Dropd extends React.PureComponent {
       })
     }
   }
+
+  handleBlurOnTabNavigation = () => this.props.closeOnBlur && this.closeDropd()
 
   closeDropd = () => {
     this._resetListScroll()
@@ -151,47 +138,39 @@ class Dropd extends React.PureComponent {
         dir="auto"
         data-open={open}
         ref={this.dropdRef}
-        className="dropd react-dropd"
+        className={CLASSNAMES.container + ' react-dropd'}
       >
         <button
           type="button"
           tabIndex="-1"
-          className="dropd-toggle"
+          className={CLASSNAMES.button}
           onMouseDown={event => this.toggleDropd(event)}
         >
           <input
             type="search"
             autoComplete="off"
             readOnly="readonly"
-            onBlur={this.closeDropd}
-            style={{
-              width: 0,
-              height: 0,
-              margin: 0,
-              padding: 0,
-              border: '0 none',
-              outline: '0 none',
-              textAlign: 'unset',
-              position: 'absolute',
-              WebkitAppearance: 'none',
-            }}
-            className="dropd-fake-search"
+            style={focusBoxStyles}
+            className={CLASSNAMES.focusbox}
+            onBlur={this.handleBlurOnTabNavigation}
             onFocus={event => this.handleFocus(event)}
           />
 
           {!currentItem && placeholder && (
-            <span className="dropd-current is-placeholder">
+            <span
+              className={CLASSNAMES.currentItem + ' ' + CLASSNAMES.placeholder}
+            >
               {placeholder.label || placeholder}
             </span>
           )}
 
           {currentItem && (
-            <span className="dropd-current">
+            <span className={CLASSNAMES.currentItem}>
               {currentItem.label || currentItem}
             </span>
           )}
 
-          <span className="dropd-caret" aria-hidden={true}>
+          <span className={CLASSNAMES.caret} aria-hidden={true}>
             <svg
               width="6"
               height="4"
@@ -221,17 +200,17 @@ class Dropd extends React.PureComponent {
         <ul
           ref={this.listRef}
           aria-hidden={String(!open)}
-          className={'dropd-list' + (open ? ' open' : '')}
+          className={CLASSNAMES.list + (open ? ' open' : '')}
         >
           {list &&
             list.map((item, key) => (
               <li
                 key={key}
                 tabIndex="-1"
-                className="dropd-item"
+                className={CLASSNAMES.item}
                 onMouseDown={event => this.handleItemChange(item, event)}
               >
-                <a tabIndex="-1" className="dropd-link">
+                <a tabIndex="-1" className={CLASSNAMES.link}>
                   {item.label || item}
                 </a>
               </li>

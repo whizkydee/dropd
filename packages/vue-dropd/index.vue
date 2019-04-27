@@ -1,42 +1,37 @@
 <template>
-  <div dir="auto" ref="dropd" class="dropd v-dropd" :data-open="open">
+  <div
+    dir="auto"
+    ref="dropd"
+    :data-open="open"
+    :class="CLASSNAMES.container + ' v-dropd'"
+  >
     <button
       type="button"
       tabindex="-1"
-      class="dropd-toggle"
+      :class="CLASSNAMES.button"
       @mousedown.stop="event => toggleDropd(event)"
     >
       <input
         type="search"
         autocomplete="off"
         readonly="readonly"
-        @blur="closeDropd"
-        :style="{
-          width: 0,
-          height: 0,
-          margin: 0,
-          padding: 0,
-          border: '0 none',
-          outline: '0 none',
-          textAlign: 'unset',
-          position: 'absolute',
-          WebkitAppearance: 'none',
-        }"
-        class="dropd-fake-search"
+        :style="focusBoxStyles"
+        :class="CLASSNAMES.focusbox"
+        @blur="handleBlurOnTabNavigation"
         @focus="event => handleFocus(event)"
       />
       <span
-        class="dropd-current is-placeholder"
         v-if="!currentItem && placeholder"
+        :class="CLASSNAMES.currentItem + ' ' + CLASSNAMES.placeholder"
       >
         {{ placeholder.label || placeholder }}
       </span>
 
-      <span class="dropd-current" v-if="currentItem">
+      <span :class="CLASSNAMES.currentItem" v-if="currentItem">
         {{ currentItem.label || currentItem }}
       </span>
 
-      <span class="dropd-caret" aria-hidden="true">
+      <span :class="CLASSNAMES.caret" aria-hidden="true">
         <svg
           width="6"
           height="4"
@@ -66,24 +61,30 @@
       ref="list"
       v-if="list && internalList"
       :aria-hidden="String(!open)"
-      :class="'dropd-list' + (open ? ' open' : '')"
+      :class="CLASSNAMES.list + (open ? ' open' : '')"
     >
       <li
         :key="key"
         tabindex="-1"
-        class="dropd-item"
+        :class="CLASSNAMES.item"
         v-for="(item, key) in internalList"
         @mousedown.prevent.stop="event => handleItemChange(item, event)"
       >
-        <a tabindex="-1" class="dropd-link">{{ item.label || item }}</a>
+        <a tabindex="-1" :class="CLASSNAMES.link">{{ item.label || item }}</a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import '../util/styles.scss'
-import { getPath, isDropdElem } from '../util'
+import {
+  getPath,
+  CLASSNAMES,
+  isDropdElem,
+  listTimeout,
+  focusBoxStyles,
+} from '../helpers'
+import '../helpers/styles.scss'
 
 const Dropd = {
   data: () => ({
@@ -118,17 +119,6 @@ const Dropd = {
     document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   },
 
-  watch: {
-    revealOn(newValue) {
-      this.internalRevealOn = newValue
-    },
-
-    defaultOpen(newValue) {
-      this._emitOpen(null)
-      this.internalDefaultOpen = newValue
-    },
-  },
-
   methods: {
     _isDropdElem(ctx) {
       return isDropdElem(ctx, this.$refs.dropd)
@@ -141,7 +131,7 @@ const Dropd = {
     _resetListScroll() {
       setTimeout(() => {
         if (this.$refs.list) this.$refs.list.scrollTop = 0
-      }, 250)
+      }, listTimeout)
     },
 
     closeOnBlurFn(event) {
@@ -158,6 +148,10 @@ const Dropd = {
         this.open = true
         this._emitOpen(event)
       }
+    },
+
+    handleBlurOnTabNavigation() {
+      this.closeOnBlur && this.closeDropd()
     },
 
     closeDropd() {
