@@ -1,5 +1,11 @@
 # Dropd
 
+## v1.1.1 / 2019-04-27
+
+- Makes the `list` prop reactive
+- Adds unit tests for `react-dropd`
+- Integrates `react-dropd`, `vue-dropd` and the stylesheet
+
 ## v1.1.0 / 2019-04-15
 
 - Fixes several browser inconsistencies
