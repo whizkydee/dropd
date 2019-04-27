@@ -17,9 +17,9 @@
     "build": "rm -rf packages/*-dropd/dist && npm-run-all build:* && yarn test && bundlesize",
     "build:vue": "rollup -c packages/vue-dropd/rollup.config.js",
     "build:react": "rollup -c packages/react-dropd/rollup.config.js && yarn test:react",
-    "dev": "concurrently --kill-others \"yarn dev:*\"",
-    "dev:vue": "rollup -c packages/vue-dropd/rollup.config.js -W",
-    "dev:react": "rollup -c packages/react-dropd/rollup.config.js -W"
+    "dev": "concurrently --kill-others \"npm run dev:*\"",
+    "dev:vue": "rollup -c packages/vue-dropd/rollup.config.js -w",
+    "dev:react": "rollup -c packages/react-dropd/rollup.config.js -w"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
