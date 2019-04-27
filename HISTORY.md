@@ -5,6 +5,8 @@
 - Makes the `list` prop reactive
 - Adds unit tests for `react-dropd`
 - Integrates `react-dropd`, `vue-dropd` and the stylesheet
+- Prevent `closeOnBlur` when `dropd` is focused via `tab` if the property is set
+  to `false`
 
 ## v1.1.0 / 2019-04-15
 
