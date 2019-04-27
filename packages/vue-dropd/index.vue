@@ -88,12 +88,22 @@ import '../helpers/styles.scss'
 
 const Dropd = {
   data: () => ({
+    CLASSNAMES,
     open: false,
-    internalList: [],
+    focusBoxStyles,
     currentItem: null,
     internalDefaultOpen: false,
     internalRevealOn: 'mousedown',
   }),
+
+  computed: {
+    internalList: {
+      set: value => value,
+      get: function() {
+        return this.list || []
+      },
+    },
+  },
 
   created() {
     // Manually update relevant internal states from props.

@@ -32,6 +32,12 @@ class Dropd extends React.PureComponent {
     document.addEventListener('mousedown', this.closeOnBlurFn, true)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.list !== prevProps.list) {
+      this.setState({ list: this.props.list })
+    }
+  }
+
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   }

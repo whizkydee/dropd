@@ -1,5 +1,9 @@
 # Dropd
 
+## v1.1.2 / 2019-04-27
+
+- Quick fix
+
 ## v1.1.1 / 2019-04-27
 
 - Makes the `list` prop reactive
