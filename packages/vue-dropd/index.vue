@@ -119,17 +119,6 @@ const Dropd = {
     document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   },
 
-  watch: {
-    revealOn(newValue) {
-      this.internalRevealOn = newValue
-    },
-
-    defaultOpen(newValue) {
-      this._emitOpen(null)
-      this.internalDefaultOpen = newValue
-    },
-  },
-
   methods: {
     _isDropdElem(ctx) {
       return isDropdElem(ctx, this.$refs.dropd)

@@ -14,22 +14,13 @@ class Dropd extends React.PureComponent {
   listRef = React.createRef()
 
   state = {
-    list: [],
     open: false,
-    currentItem: null,
-    defaultOpen: false,
-    revealOn: 'mousedown',
-  }
-
-  UNSAFE_componentWillMount() {
-    const { list, value } = this.props
-
-    this.setState(state => ({
-      revealOn: this.props.revealOn,
-      list: [...state.list, ...list],
-      defaultOpen: this.props.defaultOpen,
-      currentItem: value ? value.label || value : null,
-    }))
+    list: this.props.list,
+    revealOn: this.props.revealOn,
+    defaultOpen: this.props.defaultOpen,
+    currentItem: this.props.value
+      ? this.props.value.label || this.props.value
+      : null,
   }
 
   componentDidMount() {
@@ -39,18 +30,6 @@ class Dropd extends React.PureComponent {
     }
 
     document.addEventListener('mousedown', this.closeOnBlurFn, true)
-  }
-
-  UNSAFE_componentWillUpdate(nextProps) {
-    if (nextProps.revealOn !== this.state.revealOn) {
-      this.setState({
-        revealOn: nextProps.revealOn,
-      })
-    } else if (nextProps.defaultOpen !== this.state.defaultOpen) {
-      this.setState({
-        defaultOpen: nextProps.defaultOpen,
-      })
-    }
   }
 
   componentWillUnmount() {
@@ -63,7 +42,7 @@ class Dropd extends React.PureComponent {
     const event = new CustomEvent(eventName, { detail })
 
     this.dropdRef.current.dispatchEvent(event)
-    if (typeof callback === 'function') callback.call(this, detail)
+    typeof callback === 'function' && callback.call(this, detail)
   }
 
   _emitOpen = event => {
