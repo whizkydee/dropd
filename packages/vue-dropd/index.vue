@@ -91,17 +91,15 @@ const Dropd = {
     CLASSNAMES,
     open: false,
     focusBoxStyles,
+    internalList: [],
     currentItem: null,
     internalDefaultOpen: false,
     internalRevealOn: 'mousedown',
   }),
 
-  computed: {
-    internalList: {
-      set: value => value,
-      get: function() {
-        return this.list || []
-      },
+  watch: {
+    list(newValue) {
+      this.internalList = newValue
     },
   },
 
