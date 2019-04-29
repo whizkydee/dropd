@@ -3,7 +3,7 @@
   "name": "vue-dropd",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
-  "version": "1.1.3",
+  "version": "1.1.4-alpha.0",
   "description": "⚡️Zero-dependency minimalistic dropdown for Vue.",
   "repository": "https://github.com/whizkydee/dropd/tree/master/packages/vue-dropd",
   "files": [
