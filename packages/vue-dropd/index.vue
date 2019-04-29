@@ -59,7 +59,7 @@
     </button>
     <ul
       ref="list"
-      v-if="list && internalList"
+      v-if="list"
       :aria-hidden="String(!open)"
       :class="CLASSNAMES.list + (open ? ' open' : '')"
     >
@@ -67,7 +67,7 @@
         :key="key"
         tabindex="-1"
         :class="CLASSNAMES.item"
-        v-for="(item, key) in internalList"
+        v-for="(item, key) in list"
         @mousedown.prevent.stop="event => handleItemChange(item, event)"
       >
         <a tabindex="-1" :class="CLASSNAMES.link">{{ item.label || item }}</a>
@@ -91,32 +91,25 @@ const Dropd = {
     CLASSNAMES,
     open: false,
     focusBoxStyles,
-    internalList: [],
     currentItem: null,
     internalDefaultOpen: false,
-    internalRevealOn: 'mousedown',
   }),
 
-  watch: {
-    list(newValue) {
-      this.internalList = newValue
-    },
-  },
-
   created() {
-    // Manually update relevant internal states from props.
-    this.internalList.push(...this.list)
-    this.internalRevealOn = this.revealOn
     this.internalDefaultOpen = this.defaultOpen
-
-    // Set internal `currentItem` to `value` prop if it's set.
     if (this.value) this.currentItem = this.value.label || this.value
 
     // Set internal open state to `true` if `defaultOpen` prop is set.
     if (this.internalDefaultOpen) {
       this.open = true
-      this._emitOpen(null)
+      this.emitOpen(null)
     }
+  },
+
+  watch: {
+    value(newValue) {
+      this.currentItem = this.value.label || this.value
+    },
   },
 
   mounted() {
@@ -128,23 +121,23 @@ const Dropd = {
   },
 
   methods: {
-    _isDropdElem(ctx) {
+    isDropdElem(ctx) {
       return isDropdElem(ctx, this.$refs.dropd)
     },
 
-    _emitOpen(event) {
+    emitOpen(event) {
       if ('open' in this.$listeners) this.$emit('open', this.list, event)
     },
 
-    _resetListScroll() {
+    resetListScroll() {
       setTimeout(() => {
         if (this.$refs.list) this.$refs.list.scrollTop = 0
       }, listTimeout)
     },
 
     closeOnBlurFn(event) {
-      if (this.closeOnBlur && !this._isDropdElem(getPath(event))) {
-        this._resetListScroll()
+      if (this.closeOnBlur && !this.isDropdElem(getPath(event))) {
+        this.resetListScroll()
         this.internalDefaultOpen = false
 
         if (this.open) this.closeDropd()
@@ -154,7 +147,7 @@ const Dropd = {
     handleFocus(event) {
       if (!this.open) {
         this.open = true
-        this._emitOpen(event)
+        this.emitOpen(event)
       }
     },
 
@@ -164,7 +157,7 @@ const Dropd = {
 
     closeDropd() {
       this.open = false
-      this._resetListScroll()
+      this.resetListScroll()
       this.internalDefaultOpen = false
     },
 
@@ -177,10 +170,10 @@ const Dropd = {
     },
 
     toggleDropd(event) {
-      this._resetListScroll()
+      this.resetListScroll()
       this.open = !this.open
 
-      if (this.open) this._emitOpen(event)
+      if (this.open) this.emitOpen(event)
     },
   },
 
@@ -190,10 +183,6 @@ const Dropd = {
     defaultOpen: { type: Boolean, default: false },
     value: { type: [String, Object], default: null },
     placeholder: { type: [String, Object], default: 'Please select an item' },
-    revealOn: {
-      default: 'mousedown',
-      validator: v => ['mousedown'].indexOf(v) !== -1,
-    },
   },
 }
 

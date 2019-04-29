@@ -10,13 +10,11 @@ import '../helpers/styles.scss'
 import PropTypes from 'prop-types'
 
 class Dropd extends React.PureComponent {
-  dropdRef = React.createRef()
   listRef = React.createRef()
+  dropdRef = React.createRef()
 
   state = {
     open: false,
-    list: this.props.list,
-    revealOn: this.props.revealOn,
     defaultOpen: this.props.defaultOpen,
     currentItem: this.props.value
       ? this.props.value.label || this.props.value
@@ -25,7 +23,7 @@ class Dropd extends React.PureComponent {
 
   componentDidMount() {
     if (this.props.defaultOpen) {
-      this._emitOpen(null)
+      this.emitOpen(null)
       this.setState({ open: true })
     }
 
@@ -33,8 +31,10 @@ class Dropd extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.list !== prevProps.list) {
-      this.setState({ list: this.props.list })
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        currentItem: this.props.value.label || this.props.value,
+      })
     }
   }
 
@@ -42,24 +42,27 @@ class Dropd extends React.PureComponent {
     document.removeEventListener('mousedown', this.closeOnBlurFn, true)
   }
 
-  _isDropdElem = ctx => isDropdElem(ctx, this.dropdRef.current)
+  isDropdElem = ctx => isDropdElem(ctx, this.dropdRef.current)
 
-  _emit = (eventName, detail, callback) => {
+  emit = (eventName, detail, callback) => {
     const event = new CustomEvent(eventName, { detail })
 
     this.dropdRef.current.dispatchEvent(event)
     typeof callback === 'function' && callback.call(this, detail)
   }
 
-  _emitOpen = event => {
-    if ('onOpen' in this.props && typeof this.props.onOpen === 'function') {
-      this._emit('open', this.props.list, detail => {
+  emitOpen = event => {
+    const onOpenIsValid =
+      'onOpen' in this.props && typeof this.props.onOpen === 'function'
+
+    if (onOpenIsValid) {
+      this.emit('open', this.props.list, detail => {
         this.props.onOpen(detail, event)
       })
     }
   }
 
-  _resetListScroll = () => {
+  resetListScroll = () => {
     setTimeout(() => {
       if (this.listRef && this.listRef.current)
         this.listRef.current.scrollTop = 0
@@ -67,8 +70,8 @@ class Dropd extends React.PureComponent {
   }
 
   closeOnBlurFn = event => {
-    if (this.props.closeOnBlur && !this._isDropdElem(getPath(event))) {
-      this._resetListScroll()
+    if (this.props.closeOnBlur && !this.isDropdElem(getPath(event))) {
+      this.resetListScroll()
       this.setState({ defaultOpen: false })
 
       if (this.state.open) this.closeDropd()
@@ -78,7 +81,7 @@ class Dropd extends React.PureComponent {
   handleFocus = event => {
     if (!this.state.open) {
       this.setState({ open: true }, () => {
-        this._emitOpen(event)
+        this.emitOpen(event)
       })
     }
   }
@@ -86,7 +89,7 @@ class Dropd extends React.PureComponent {
   handleBlurOnTabNavigation = () => this.props.closeOnBlur && this.closeDropd()
 
   closeDropd = () => {
-    this._resetListScroll()
+    this.resetListScroll()
     this.setState({ open: false, defaultOpen: false })
   }
 
@@ -100,7 +103,7 @@ class Dropd extends React.PureComponent {
         'onItemChange' in this.props &&
         typeof this.props.onItemChange === 'function'
       ) {
-        this._emit('itemChange', this.state.currentItem, detail => {
+        this.emit('itemChange', this.state.currentItem, detail => {
           this.props.onItemChange(detail, event)
         })
       }
@@ -111,29 +114,26 @@ class Dropd extends React.PureComponent {
     event.persist()
     event.stopPropagation()
 
-    this._resetListScroll()
+    this.resetListScroll()
     this.setState(
       ({ open }) => ({ open: !open }),
-      () => {
-        if (this.state.open) this._emitOpen(event)
-      }
+      () => this.state.open && this.emitOpen(event)
     )
   }
 
   render() {
-    const { placeholder } = this.props
-    const { list, currentItem, open } = this.state
+    const { currentItem, open } = this.state
 
     /* eslint-disable no-unused-vars */
     const {
+      list,
       value,
       onOpen,
       revealOn,
       closeOnBlur,
+      placeholder,
       defaultOpen,
       onItemChange,
-      list: listProp,
-      placeholder: placeholderProp,
       ...props
     } = this.props
     /* eslint-enable */
@@ -235,7 +235,6 @@ Dropd.propTypes = {
   onItemChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  revealOn: PropTypes.oneOf(['mousedown']),
 }
 
 Dropd.defaultProps = {
@@ -244,7 +243,6 @@ Dropd.defaultProps = {
   defaultOpen: false,
   value: null,
   placeholder: 'Please select an item',
-  revealOn: 'mousedown',
 }
 
 export default Dropd
