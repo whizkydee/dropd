@@ -14,8 +14,8 @@ $button-height: 43px;
     transform: rotate(-180deg);
   }
 
-  * {
-    outline-width: 1px;
+  :focus {
+    outline-width: 2px;
     box-sizing: border-box;
     outline-color: #3599e7;
   }
