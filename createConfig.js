@@ -9,7 +9,7 @@ const sassVariablesToObject = require('rollup-plugin-sass-variables')
 
 const formats = ['es', 'cjs']
 
-const createRollupConfig = opts => ({
+const createConfig = opts => ({
   input: opts.input,
   external: [...(opts.external || [])],
   plugins: [
@@ -49,4 +49,4 @@ const createRollupConfig = opts => ({
   ],
 })
 
-module.exports = createRollupConfig
+module.exports = createConfig
