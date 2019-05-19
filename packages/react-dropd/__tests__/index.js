@@ -52,17 +52,17 @@ describe('Dropd', () => {
     expect(mockDropd().items.length).toEqual(monthList.length)
   })
 
-  test('`currentItem` in state should be set to `value` prop on initial render', () => {
+  test('currentItem in state should be set to value prop on initial render', () => {
     expect(mockDropd({ value: monthList[0] }).currentItem.textContent).toEqual(
       monthList[0]
     )
   })
 
-  test('should be open on mount when the `defaultOpen` prop is set to true', () => {
+  test('should be open on mount when the defaultOpen prop is set to true', () => {
     expect(mockDropd({ defaultOpen: true }).dropdElem.dataset.open).toBe('true')
   })
 
-  test('should close on click away when `closeOnBlur` prop is set to true', () => {
+  test('should close on click away when closeOnBlur prop is set to true', () => {
     const { button, baseElement, list } = mockDropd({ closeOnBlur: true })
 
     fireEvent.mouseDown(button)
@@ -70,7 +70,7 @@ describe('Dropd', () => {
     expect(list.classList.contains('open')).toBeFalsy()
   })
 
-  test('should close on input mousedown when `closeOnBlur` prop is set to true', () => {
+  test('should close on input mousedown when closeOnBlur prop is set to true', () => {
     const { button, inputMock, baseElement, list } = mockDropd({
       closeOnBlur: true,
     })
@@ -81,7 +81,7 @@ describe('Dropd', () => {
     expect(list.classList.contains('open')).toBeFalsy()
   })
 
-  test('should not close on click away when `closeOnBlur` prop is set to false', () => {
+  test('should not close on click away when closeOnBlur prop is set to false', () => {
     const { button, baseElement, list } = mockDropd({ closeOnBlur: false })
 
     fireEvent.mouseDown(button)
@@ -89,7 +89,7 @@ describe('Dropd', () => {
     expect(list.classList.contains('open')).toBeTruthy()
   })
 
-  test('should not close on input mousedown when `closeOnBlur` prop is set to false', () => {
+  test('should not close on input mousedown when closeOnBlur prop is set to false', () => {
     const { button, baseElement, list, inputMock } = mockDropd({
       closeOnBlur: false,
     })
@@ -100,14 +100,14 @@ describe('Dropd', () => {
     expect(list.classList.contains('open')).toBeTruthy()
   })
 
-  test('should call the `onOpen` function when it is passed', () => {
+  test('should call the onOpen function when it is passed', () => {
     const mockFn = jest.fn()
 
     fireEvent.mouseDown(mockDropd({ onOpen: mockFn }).button)
     expect(mockFn).toHaveBeenCalledTimes(1)
   })
 
-  test('should call the `onItemChange` function when it is passed', () => {
+  test('should call the onItemChange function when it is passed', () => {
     const mockFn = jest.fn()
 
     fireEvent.mouseDown(mockDropd({ onItemChange: mockFn }).items[0])
