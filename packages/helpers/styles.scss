@@ -88,6 +88,7 @@ $button-height: 43px;
   min-width: 200px;
   max-height: 300px;
   overflow-x: hidden;
+  visibility: hidden;
   position: absolute;
   border-radius: 4px;
   pointer-events: none;
@@ -101,6 +102,7 @@ $button-height: 43px;
   &.open {
     opacity: 1;
     z-index: 1000;
+    visibility: visible;
     pointer-events: auto;
     transform: scaleY(1) translateY(0px);
     box-shadow: 0 4px 10px rgba(32, 49, 70, 0.08);
@@ -119,7 +121,7 @@ $button-height: 43px;
     white-space: nowrap;
     transition: background 300ms, color 100ms;
 
-    &:hover {
+    &.active {
       color: #2c3c4f;
       background: #f9fafc;
     }
