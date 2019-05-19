@@ -1,6 +1,8 @@
 @import './constants';
 
 $button-height: 43px;
+$delay: #{$list-transition-delay}ms;
+$duration: #{$list-transition-duration}ms;
 
 .dropd {
   color: #7a8ca0;
@@ -97,7 +99,7 @@ $button-height: 43px;
   border: 1px solid #e8ecf3;
   background-color: #ffffff;
   transform: scaleY(0.8) translateY(-10px);
-  transition: #{$list-transition-duration}ms #{$list-transition-delay}ms, box-shadow 200ms 100ms;
+  transition: 200ms $delay, $duration $delay opacity, transform 150ms $delay;
 
   &.open {
     opacity: 1;
