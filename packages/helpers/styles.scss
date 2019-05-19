@@ -15,12 +15,6 @@ $duration: #{$list-transition-duration}ms;
   &[data-open='true'] .dropd-caret {
     transform: rotate(-180deg);
   }
-
-  :focus {
-    outline-width: 2px;
-    box-sizing: border-box;
-    outline-color: #3599e7;
-  }
 }
 
 .dropd-toggle {
@@ -41,6 +35,13 @@ $duration: #{$list-transition-duration}ms;
   border: 1px solid #e8ecf3;
   justify-content: space-between;
   -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline-width: 3px;
+    outline-offset: -2px;
+    box-sizing: border-box;
+    outline-color: #3599e7;
+  }
 
   .dropd-caret {
     width: 6px;
