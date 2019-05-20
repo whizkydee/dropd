@@ -1,6 +1,6 @@
 import path from 'path'
 import vue from 'rollup-plugin-vue'
-const { createConfig } = require('../../createConfig')
+const createConfig = require('../../createConfig').default
 
 export default createConfig({
   plugins: [vue()],

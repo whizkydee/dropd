@@ -49,4 +49,4 @@ const createConfig = opts => ({
   ],
 })
 
-module.exports = createConfig
+module.exports.default = createConfig

@@ -1,5 +1,5 @@
 import path from 'path'
-const { createConfig } = require('../../createConfig')
+const createConfig = require('../../createConfig').default
 
 export default createConfig({
   external: ['react', 'prop-types'],
