@@ -3,7 +3,7 @@ import {
   CLASSNAMES,
   isDropdElem,
   listTimeout,
-  focusBoxStyles,
+  listTransitionDelay,
 } from '../helpers'
 import React from 'react'
 import '../helpers/styles.scss'
@@ -15,10 +15,13 @@ class Dropd extends React.PureComponent {
 
   state = {
     open: false,
+    highlighted: 0,
     defaultOpen: this.props.defaultOpen,
-    currentItem: this.props.value
-      ? this.props.value.label || this.props.value
-      : null,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state.currentItem = this.props.value ? this.getLabel() : null
   }
 
   componentDidMount() {
@@ -27,22 +30,31 @@ class Dropd extends React.PureComponent {
       this.setState({ open: true })
     }
 
-    document.addEventListener('mousedown', this.closeOnBlurFn, true)
+    if (this.props.value && this.props.list instanceof Array) {
+      let label = this.getLabel() || this.getLabel().map(({ label }) => label)
+      this.highlight(this.props.list.indexOf(label))
+    }
+
+    if (document && document.addEventListener) {
+      document.addEventListener('mousedown', this.closeOnBlurFn, true)
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.value !== prevProps.value) {
-      this.setState({
-        currentItem: this.props.value.label || this.props.value,
-      })
+    if (this.props.value && this.props.value !== prevProps.value) {
+      this.setState({ currentItem: this.value })
     }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.closeOnBlurFn, true)
+    if (document && document.removeEventListener) {
+      document.removeEventListener('mousedown', this.closeOnBlurFn, true)
+    }
   }
 
   isDropdElem = ctx => isDropdElem(ctx, this.dropdRef.current)
+
+  getLabel = (ctx = this.props) => ctx.value || ctx.value.label
 
   emit = (eventName, detail, callback) => {
     const event = new CustomEvent(eventName, { detail })
@@ -62,6 +74,9 @@ class Dropd extends React.PureComponent {
     }
   }
 
+  scrollTo = pos =>
+    this.listRef.current ? (this.listRef.current.scrollTop = pos) : null
+
   resetListScroll = () => {
     setTimeout(() => {
       if (this.listRef && this.listRef.current)
@@ -71,33 +86,63 @@ class Dropd extends React.PureComponent {
 
   closeOnBlurFn = event => {
     if (this.props.closeOnBlur && !this.isDropdElem(getPath(event))) {
-      this.resetListScroll()
+      this.props.alwaysResetScroll && this.resetListScroll()
       this.setState({ defaultOpen: false })
 
       if (this.state.open) this.closeDropd()
     }
   }
 
-  handleFocus = event => {
-    if (!this.state.open) {
-      this.setState({ open: true }, () => {
-        this.emitOpen(event)
-      })
-    }
-  }
+  highlight = idx => this.setState({ highlighted: idx })
 
-  handleBlurOnTabNavigation = () => this.props.closeOnBlur && this.closeDropd()
+  handleBlur = () => this.props.closeOnBlur && this.closeDropd()
 
   closeDropd = () => {
-    this.resetListScroll()
+    this.props.alwaysResetScroll && this.resetListScroll()
     this.setState({ open: false, defaultOpen: false })
   }
 
-  handleItemChange = (item, event) => {
+  handleKeyDown = event => {
+    switch (event.key) {
+      case ' ': // Space
+        this.toggleDropd(event)
+        break
+      case 'Escape':
+        if (this.state.open) this.closeDropd()
+        break
+      case 'ArrowUp':
+        event.preventDefault()
+        break
+      case 'ArrowDown':
+        event.preventDefault()
+        break
+
+      default:
+        break
+    }
+  }
+
+  toggleDropd = event => {
+    const RIGHT_CLICK = event.button === 2
+    event.persist()
+    event.stopPropagation()
+
+    this.props.alwaysResetScroll && this.resetListScroll()
+
+    if (!RIGHT_CLICK) {
+      this.setState(
+        ({ open }) => ({ open: !open }),
+        () => this.state.open && this.emitOpen(event)
+      )
+    }
+  }
+
+  handleItemChange = (item, idx, event) => {
     event.preventDefault()
     event.nativeEvent && event.nativeEvent.stopImmediatePropagation()
 
-    this.closeDropd()
+    this.highlight(idx)
+    setTimeout(() => this.closeDropd(), listTransitionDelay)
     this.setState({ currentItem: item }, () => {
       if (
         'onItemChange' in this.props &&
@@ -110,19 +155,8 @@ class Dropd extends React.PureComponent {
     })
   }
 
-  toggleDropd = event => {
-    event.persist()
-    event.stopPropagation()
-
-    this.resetListScroll()
-    this.setState(
-      ({ open }) => ({ open: !open }),
-      () => this.state.open && this.emitOpen(event)
-    )
-  }
-
   render() {
-    const { currentItem, open } = this.state
+    const { currentItem, open, highlighted } = this.state
 
     /* eslint-disable no-unused-vars */
     const {
@@ -134,6 +168,7 @@ class Dropd extends React.PureComponent {
       placeholder,
       defaultOpen,
       onItemChange,
+      alwaysResetScroll,
       ...props
     } = this.props
     /* eslint-enable */
@@ -148,20 +183,11 @@ class Dropd extends React.PureComponent {
       >
         <button
           type="button"
-          tabIndex="-1"
+          onBlur={this.handleBlur}
           className={CLASSNAMES.button}
+          onKeyDown={this.handleKeyDown}
           onMouseDown={event => this.toggleDropd(event)}
         >
-          <input
-            type="search"
-            autoComplete="off"
-            readOnly="readonly"
-            style={focusBoxStyles}
-            className={CLASSNAMES.focusbox}
-            onBlur={this.handleBlurOnTabNavigation}
-            onFocus={event => this.handleFocus(event)}
-          />
-
           {!currentItem && placeholder && (
             <span
               className={CLASSNAMES.currentItem + ' ' + CLASSNAMES.placeholder}
@@ -180,7 +206,7 @@ class Dropd extends React.PureComponent {
             <svg
               width="6"
               height="4"
-              tabIndex="-1"
+              focusable="false"
               viewBox="0 0 6 4"
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -188,7 +214,6 @@ class Dropd extends React.PureComponent {
               <defs>
                 <path
                   id="a"
-                  tabIndex="-1"
                   d="M132.047 389.564l.644-.537a.134.134 0 0 1 .091-.028.124.124 0 0 1 .085.042l2.134 2.438 2.133-2.438a.124.124 0 0 1 .085-.042.137.137 0 0 1 .091.028l.645.537c.025.021.04.05.043.083a.115.115 0 0 1-.03.088l-2.872 3.223a.127.127 0 0 1-.19 0l-2.873-3.223a.116.116 0 0 1-.03-.088.12.12 0 0 1 .044-.083z"
                 />
               </defs>
@@ -196,7 +221,6 @@ class Dropd extends React.PureComponent {
                 opacity=".7"
                 fill="#2c3c4f"
                 xlinkHref="#a"
-                tabIndex="-1"
                 transform="translate(-132 -389)"
               />
             </svg>
@@ -204,6 +228,7 @@ class Dropd extends React.PureComponent {
         </button>
 
         <ul
+          role="listbox"
           ref={this.listRef}
           aria-hidden={String(!open)}
           className={CLASSNAMES.list + (open ? ' open' : '')}
@@ -212,13 +237,15 @@ class Dropd extends React.PureComponent {
             list.map((item, key) => (
               <li
                 key={key}
-                tabIndex="-1"
-                className={CLASSNAMES.item}
-                onMouseDown={event => this.handleItemChange(item, event)}
+                role="option"
+                className={
+                  CLASSNAMES.item +
+                  (key === highlighted ? ' ' + CLASSNAMES.highlighted : '')
+                }
+                onMouseDown={event => event.preventDefault()}
+                onMouseUp={event => this.handleItemChange(item, key, event)}
               >
-                <a tabIndex="-1" className={CLASSNAMES.link}>
-                  {item.label || item}
-                </a>
+                {item.label || item}
               </li>
             ))}
         </ul>
@@ -233,6 +260,7 @@ Dropd.propTypes = {
   defaultOpen: PropTypes.bool,
   onOpen: PropTypes.func,
   onItemChange: PropTypes.func,
+  alwaysResetScroll: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
@@ -241,8 +269,9 @@ Dropd.defaultProps = {
   list: [],
   closeOnBlur: true,
   defaultOpen: false,
+  alwaysResetScroll: false,
   value: null,
-  placeholder: 'Please select an item',
+  placeholder: 'Select...',
 }
 
 export default Dropd
