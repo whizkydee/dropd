@@ -13,16 +13,17 @@
   "scripts": {
     "test": "npm-run-all test:*",
     "test:react": "jest -c packages/react-dropd/jest.config.js",
+    "test:vue": "jest -c packages/vue-dropd/jest.config.js",
     "fresh": "rm -rf node_modules && yarn install -W",
     "build": "rm -rf packages/*-dropd/dist && npm-run-all build:* && yarn test && bundlesize",
-    "build:vue": "rollup -c packages/vue-dropd/rollup.config.js",
+    "build:vue": "rollup -c packages/vue-dropd/rollup.config.js && yarn test:vue",
     "build:react": "rollup -c packages/react-dropd/rollup.config.js && yarn test:react",
     "dev": "concurrently --kill-others \"npm run dev:*\"",
     "dev:vue": "rollup -c packages/vue-dropd/rollup.config.js -w",
     "dev:react": "rollup -c packages/react-dropd/rollup.config.js -w"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
+    "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
     "@babel/plugin-transform-classes": "^7.4.3",
@@ -50,7 +51,10 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-sass-variables": "^0.1.1",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup-plugin-terser": "^4.0.4",
+    "vue": "^2.6.10",
+    "vue-jest": "^3.0.4",
+    "vue-testing-library": "^0.16.0"
   },
   "bundlesize": [
     {

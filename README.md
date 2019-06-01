@@ -66,7 +66,12 @@ of things to do.
 1. Use `yarn build` to compile `packages/vue-dropd/index.vue` and
    `packages/react-dropd/index.js` (shows `bundlesize` info too)
 
-
 ## 🤝 License
 
-MIT © [Olaolu Olawuyi](https://twitter.com/mrolaolu)
+<!-- {p: style='display:none'} -->
+
+> MIT © [olaolu.me](https://olaolu.me) &nbsp;&middot;&nbsp; GitHub
+> [@whizkydee](https://github.com/whizkydee) &nbsp;&middot;&nbsp; Twitter
+> [@mrolaolu](https://twitter.com/mrolaolu)
+
+<!-- {blockquote: style='display:none'} -->

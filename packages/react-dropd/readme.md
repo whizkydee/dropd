@@ -82,7 +82,7 @@ when the component is mounted).
 
 #### `placeholder: {String|Object}`
 
-**Default:** `Please select an item`
+**Default:** `Select...`
 
 **Description:** Specifies a placeholder for the dropdown. Very similar to the
 `placeholder` attribute on html inputs.
@@ -145,4 +145,10 @@ of things to do.
 
 ## 🤝 License
 
-MIT © [Olaolu Olawuyi](https://twitter.com/mrolaolu)
+<!-- {p: style='display:none'} -->
+
+> MIT © [olaolu.me](https://olaolu.me) &nbsp;&middot;&nbsp; GitHub
+> [@whizkydee](https://github.com/whizkydee) &nbsp;&middot;&nbsp; Twitter
+> [@mrolaolu](https://twitter.com/mrolaolu)
+
+<!-- {blockquote: style='display:none'} -->
