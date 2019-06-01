@@ -4,19 +4,18 @@ const CLASSNAMES = {
   container: 'dropd',
   list: 'dropd-list',
   item: 'dropd-item',
-  link: 'dropd-link',
   caret: 'dropd-caret',
   button: 'dropd-toggle',
   focusbox: 'dropd-focusbox',
+  highlighted: 'highlighted',
   currentItem: 'dropd-current',
   placeholder: 'is-placeholder',
 }
 
-const CLASSES = {}
-
-Object.keys(CLASSNAMES).forEach(className => {
-  CLASSES[className] = '.' + CLASSNAMES[className]
-}) // { container: '.dropd', ... }
+const CLASSES = Object.keys(CLASSNAMES).reduce(
+  (acc, cur) => ({ ...acc, [cur]: '.' + CLASSNAMES[cur] }),
+  {}
+) // { container: '.dropd', ... }
 
 const getPath = event =>
   event && event instanceof UIEvent
@@ -26,30 +25,16 @@ const getPath = event =>
 const isDropdElem = (ctx, ref) =>
   ctx && (ctx.indexOf(ref) !== -1 && ctx !== ref)
 
-const focusBoxStyles = {
-  width: 0,
-  height: 0,
-  margin: 0,
-  padding: 0,
-  border: '0 none',
-  outline: '0 none',
-  textAlign: 'unset',
-  position: 'absolute',
-  WebkitAppearance: 'none',
-}
+const listTransitionDelay = parseInt(constants.listTransitionDelay)
 
 const listTimeout =
-  parseInt(constants.listTransitionDelay) +
-  parseInt(constants.listTransitionDuration)
-
-const wait = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms))
+  listTransitionDelay + parseInt(constants.listTransitionDuration)
 
 export {
-  wait,
   getPath,
   CLASSES,
   CLASSNAMES,
   isDropdElem,
   listTimeout,
-  focusBoxStyles,
+  listTransitionDelay,
 }
