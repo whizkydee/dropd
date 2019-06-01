@@ -1,6 +1,8 @@
 @import './constants';
 
-$button-height: 43px;
+$height: 43px;
+$list-padding: 5px;
+$items-per-view: 7;
 $delay: #{$list-transition-delay}ms;
 $duration: #{$list-transition-duration}ms;
 
@@ -15,6 +17,10 @@ $duration: #{$list-transition-duration}ms;
   &[data-open='true'] .dropd-caret {
     transform: rotate(-180deg);
   }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 .dropd-toggle {
@@ -24,45 +30,44 @@ $duration: #{$list-transition-duration}ms;
   padding: 10px;
   display: flex;
   cursor: pointer;
+  height: $height;
   overflow: hidden;
   font-weight: normal;
   align-items: center;
   outline-color: #fff;
-  white-space: no-wrap;
-  height: $button-height;
+  white-space: nowrap;
   -webkit-appearance: none;
   background-color: #ffffff;
   border: 1px solid #e8ecf3;
   justify-content: space-between;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0 , 0);
 
   &:focus {
     outline-width: 3px;
     outline-offset: -2px;
-    box-sizing: border-box;
-    outline-color: #3599e7;
+    outline-color: #2684FF;
   }
+}
 
-  .dropd-caret {
-    width: 6px;
-    height: 100%;
-    display: flex;
-    outline: 0 none;
-    margin-left: 20px;
-    transform: rotate(0);
-    transition: 300ms linear;
+.dropd-caret {
+  width: 6px;
+  height: 100%;
+  display: flex;
+  outline: 0 none;
+  margin-left: 20px;
+  transform: rotate(0);
+  transition: 300ms linear;
 
-    svg {
-      width: inherit;
-      height: inherit;
+  svg {
+    width: inherit;
+    height: inherit;
+    outline: inherit;
+    overflow: hidden;
+
+    use,
+    path {
       outline: inherit;
-      overflow: hidden;
-
-      use,
-      path {
-        outline: inherit;
-        fill: currentColor;
-      }
+      fill: currentColor;
     }
   }
 }
@@ -78,28 +83,28 @@ $duration: #{$list-transition-duration}ms;
 
 .dropd-list {
   left: 0;
+  margin: 0;
   opacity: 0;
   z-index: -9;
   width: 100%;
-  padding: 5px 0;
-  margin: 2px 0 0;
   list-style: none;
   text-align: left;
   box-shadow: none;
   overflow-y: auto;
+  top: $height + 7;
   font-size: 0.9em;
   min-width: 200px;
-  max-height: 300px;
   overflow-x: hidden;
   visibility: hidden;
   position: absolute;
   border-radius: 4px;
   pointer-events: none;
   transform-origin: top;
-  top: $button-height + 5;
+  padding: $list-padding 0;
   border: 1px solid #e8ecf3;
   background-color: #ffffff;
   transform: scaleY(0.8) translateY(-10px);
+  max-height: ($height * $items-per-view) + ($list-padding * 2);
   transition: 200ms $delay, $duration $delay opacity, transform 150ms $delay;
 
   &.open {
@@ -113,30 +118,23 @@ $duration: #{$list-transition-duration}ms;
 
   .dropd-item {
     margin: 0;
-    width: 100%;
-    display: block;
     color: #7a8ca0;
+    cursor: pointer;
     list-style: none;
     text-align: left;
     overflow: hidden;
-    position: relative;
-    font-weight: normal;
+    padding: 13px 20px;
     white-space: nowrap;
-    transition: background 300ms, color 100ms;
+    transition: background-color 300ms, color 100ms;
 
-    &.active {
+    &:not(.highlighted):hover {
       color: #2c3c4f;
-      background: #f9fafc;
+      background-color: #f9fafc;
     }
 
-    a {
-      display: block;
-      color: inherit;
-      cursor: pointer;
-      color: inherit;
-      line-height: 1.6;
-      padding: 10px 20px;
-      white-space: initial;
+    &.highlighted {
+      color: #eeffff;
+      background-color: #2684FF;
     }
   }
 }
