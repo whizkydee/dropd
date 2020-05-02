@@ -4,9 +4,9 @@ import {
   isDropdElem,
   listTimeout,
   focusBoxStyles,
-} from '../helpers'
+} from 'helpers'
 import React from 'react'
-import '../helpers/styles.scss'
+import 'helpers/styles.scss'
 import PropTypes from 'prop-types'
 
 class Dropd extends React.PureComponent {

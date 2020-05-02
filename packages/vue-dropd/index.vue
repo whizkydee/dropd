@@ -83,8 +83,8 @@ import {
   isDropdElem,
   listTimeout,
   focusBoxStyles,
-} from '../helpers'
-import '../helpers/styles.scss'
+} from 'helpers'
+import 'helpers/styles.scss'
 
 const Dropd = {
   data: () => ({
