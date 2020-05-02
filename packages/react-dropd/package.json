@@ -15,6 +15,7 @@
     "url": "https://twitter.com/mrolaolu"
   },
   "dependencies": {
+    "helpers": "file:../helpers",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {

@@ -14,6 +14,9 @@
     "email": "mrolaolu@gmail.com",
     "url": "https://twitter.com/mrolaolu"
   },
+  "dependencies": {
+    "helpers": "file:../helpers"
+  },
   "peerDependencies": {
     "vue": "2.x"
   },

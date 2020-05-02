@@ -1,4 +1,4 @@
-import Dropd from '../dist/index.cjs'
+import Dropd from '../index.js'
 import React, { Fragment } from 'react'
 import { CLASSES } from '../../helpers'
 import { render, fireEvent, cleanup } from 'react-testing-library'

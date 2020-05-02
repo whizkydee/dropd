@@ -1,0 +1,16 @@
+{
+  "license": "MIT",
+  "name": "helpers",
+  "main": "./index.js",
+  "version": "1.0.0",
+  "description": "⚙️ Helpers for dropd.",
+  "repository": "https://github.com/whizkydee/dropd/tree/master/packages/helpers",
+  "author": {
+    "name": "Olaolu Olawuyi",
+    "email": "mrolaolu@gmail.com",
+    "url": "https://twitter.com/mrolaolu"
+  },
+  "keywords": [
+    "helpers"
+  ]
+}
