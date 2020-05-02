@@ -19,7 +19,11 @@
     "build:react": "rollup -c packages/react-dropd/rollup.config.js && yarn test:react",
     "dev": "concurrently --kill-others \"npm run dev:*\"",
     "dev:vue": "rollup -c packages/vue-dropd/rollup.config.js -w",
-    "dev:react": "rollup -c packages/react-dropd/rollup.config.js -w"
+    "dev:react": "rollup -c packages/react-dropd/rollup.config.js -w",
+    "symlink:vue": "symlink-dir ./packages/helpers ./packages/vue-dropd/node_modules/helpers",
+    "symlink:react": "symlink-dir ./packages/helpers ./packages/react-dropd/node_modules/helpers",
+    "symlink": "yarn run symlink:vue && yarn run symlink:react",
+    "postinstall": "lerna bootstrap && yarn run symlink"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -50,7 +54,8 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-sass-variables": "^0.1.1",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup-plugin-terser": "^4.0.4",
+    "symlink-dir": "4.0.1"
   },
   "bundlesize": [
     {
